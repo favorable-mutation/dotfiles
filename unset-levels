@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
 
 # prompt the user to run the script at their own risk
 read -p "If you run this script, all open applications will quit to force recognition of the new settings. Continue? (y/n) " choice
