@@ -33,15 +33,15 @@ textKeepTinyChars yes
 
 # use some vi key mappings
 bind h		any scrollLeft(32)
-bind H		any prevPage
+bind H		any scrollUp(128)
 bind l		any scrollRight(32)
-bind L		any nextPage
+bind L		any scrollDown(128)
 bind k		any scrollUp(32)
 bind K		any scrollUp(64)
 bind j		any scrollDown(32)
 bind J		any scrollDown(64)
-bind u	        any scrollUp(128)
-bind d	        any scrollDown(128)
+bind u	        any prevPage
+bind d	        any prevPage
 bind /		any find
 bind ?		any find
 bind n		any findNext
