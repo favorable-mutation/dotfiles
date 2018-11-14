@@ -9,6 +9,9 @@ colorscheme snow
 " defaults recommended for Racket until line 14 - one of these settings makes sure 
 " that auto-indented newlines will use spaces, not tabs
 
+" use vim as the pager within vim
+let $PAGER=''
+
 " syntax highlighting on
 syntax on
 filetype on
@@ -28,7 +31,7 @@ set number
 set report=0
 
 " map enter for easy newline insertion without entering insert mode
-map <Enter> o<ESC>
+nnoremap <Enter> o<ESC>
 
-" map shift-enter for the same purpose above cursor
-map <S-Enter> O<ESC>
+" map Terminal.app's weird fn + enter keycode for the same purpose above cursor
+nnoremap OM  O<ESC>
