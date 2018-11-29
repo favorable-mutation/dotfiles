@@ -1,3 +1,5 @@
+" BEGIN PLUGIN CONFIG -------------------------------------------
+
 " use vim-plug to install plugins
 call plug#begin('~/.vim/plugged')
 
@@ -12,6 +14,9 @@ Plug 'itchyny/lightline.vim'
 
 " add NERDTree plugin for project structure viewing
 Plug 'scrooloose/nerdtree'
+
+" add vim.surround plugin for better html tag editing
+Plug 'tpope/vim-surround'
 
 " end vim-plug call
 call plug#end()
@@ -29,12 +34,22 @@ set laststatus=2
 set noshowmode
 
 " set the lightline colorscheme
-let g:lightline = {
-    \ 'colorscheme': 'jellybeans',
-    \ }
+let g:lightline = {'colorscheme': 'jellybeans'}
 
-" map control o to open NERDTree
-map <C-o> :NERDTreeToggle<CR>
+" activate builtin macro for jumping between html open/close tags
+runtime macros/matchit.vim
+
+" END PLUGIN CONFIG ---------------------------------------------
+
+" BEGIN RACKET DEFAULTS -----------------------------------------
+
+" syntax highlighting and auto filetype detection on
+syntax on filetype on filetype indent on filetype plugin on
+
+" make tab key produce 4 spaces
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" END RACKET DEFAULTS -------------------------------------------
 
 " use vim as the pager within vim
 let $PAGER=''
@@ -48,20 +63,36 @@ set number
 " display a confirmation message when yanking or deleting any number of lines
 set report=0
 
+" set maximum line length to 80 characters
+set textwidth=80
+
+" add t to formatoptions
+set fo+=t
+
+" map control o to open NERDTree
+nnoremap <C-o> :NERDTreeToggle<CR>
+
 " map enter for easy newline insertion without entering insert mode
 nnoremap <Enter> o<ESC>
 
 " map Terminal.app's weird fn + enter keycode for the same purpose above cursor
 nnoremap OM  O<ESC>
 
-" defaults recommended for Racket - one of these settings makes sure 
-" that auto-indented newlines will use spaces, not tabs
+" define a command for putting every HTML tag on its own line
+command! -bar TagLine %s/<[^>]*>/\r&\r/g | g/^\s*$/d
+" [0-9A-Za-z_]\@<!<\/[^>]*>
 
-" syntax highlighting on
-syntax on
-filetype on
-filetype indent on
-filetype plugin on
+" define a command to auto-indent the entire file
+command! -bar ReIndent exe "norm gg=G''"
 
-" make tab key produce 4 spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+" define a command for enforcing line lengths by first appending a series of
+" characters to each line, then removing that series of characters
+" note: if adding another command after the last one here, use <bar> instead of
+" regular | or everything breaks
+command! -bar ForceLen g/\%>79v/execute "norm A\~\#\*" | %s/\~\#\*/
+
+" define a command to run several formatting commands on an HTML file
+command! -bar FormatHTML TagLine | ReIndent | ForceLen
+
+" define a command to allow auto-alphabetizing of CSS properties
+command! -bar SortCSS g#\({\n\)\@<=#.,/}/sort
