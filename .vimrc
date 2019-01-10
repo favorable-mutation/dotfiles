@@ -69,7 +69,7 @@ set textwidth=80
 " add t to formatoptions
 set fo+=t
 
-" map control o to open NERDTree
+" map control o to toggle open/closed NERDTree
 nnoremap <C-o> :NERDTreeToggle<CR>
 
 " map enter for easy newline insertion without entering insert mode
@@ -90,6 +90,13 @@ command! -bar ReIndent exe "norm gg=G''"
 " note: if adding another command after the last one here, use <bar> instead of
 " regular | or everything breaks
 command! -bar ForceLen g/\%>79v/execute "norm A\~\#\*" | %s/\~\#\*/
+
+" define a command to put every line in the file on the same line
+command! -bar JoinAll g/$/join
+
+" define a command to put everything in the document on one line and then force
+" the length to the max character limit
+command! -bar Justify JoinAll | ForceLen
 
 " define a command to run several formatting commands on an HTML file
 command! -bar FormatHTML TagLine | ReIndent | ForceLen

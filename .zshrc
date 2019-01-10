@@ -125,11 +125,23 @@ alias vi="vim"
 # stop thinking about python 2
 alias python="python3"
 
+# stop thinking about pip 2
+alias pip="pip3"
+
+# allow easy creation of a python environment in the current  directory
+py-env-init() {
+    virtualenv .
+    source ./bin/activate
+}
+
+# allow easy activation when in a python environment directory
+alias py-env="source ./bin/activate"
+
 # allow easy configuration of zsh
 alias zshrc="${EDITOR:-vi} ~/.zshrc"
 
 # allow easy configuration of zsh for personal aliases
-alias zshrc="${EDITOR:-vi} ~/.zsh_personal"
+alias zshrc-p="${EDITOR:-vi} ~/.zsh_personal"
 
 # allow easy configuration of vim 
 alias vimrc="${EDITOR:-vi} ~/.vimrc"

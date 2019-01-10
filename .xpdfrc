@@ -41,7 +41,7 @@ bind K		any scrollUp(64)
 bind j		any scrollDown(32)
 bind J		any scrollDown(64)
 bind u	        any prevPage
-bind d	        any prevPage
+bind d	        any nextPage
 bind /		any find
 bind ?		any find
 bind n		any findNext

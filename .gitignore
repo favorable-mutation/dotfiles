@@ -1,6 +1,7 @@
 # Prevent git from staging .vim directory and nesting gits
-.vim
+.vim/
 
 # Personal Info
 backup-data/
 .zsh_personal
+.ssh/
