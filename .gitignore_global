@@ -83,3 +83,8 @@ composer.lock
 .metadata
 *.iml
 *.ipr
+pom.xml
+
+# Ignore Generated Javadoc #
+############################
+code/doc/

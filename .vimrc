@@ -18,6 +18,9 @@ Plug 'scrooloose/nerdtree'
 " add vim.surround plugin for better html tag editing
 Plug 'tpope/vim-surround'
 
+" add autoformat plugin
+Plug 'Chiel92/vim-autoformat'
+
 " end vim-plug call
 call plug#end()
 

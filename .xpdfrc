@@ -45,6 +45,6 @@ bind d	        any nextPage
 bind /		any find
 bind ?		any find
 bind n		any findNext
-bind N		any findNext
+bind N		any findPrevious
 
 # vi: ft=conf tw=78

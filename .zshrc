@@ -1,6 +1,9 @@
 # put here by thefuck
 eval $(thefuck --alias)
 
+# activate jenv automatically
+eval "$(jenv init -)"
+
 # begin oh-my-zsh config ------------------------------------------------ #
 
 # Path to your oh-my-zsh installation.
@@ -118,6 +121,9 @@ export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 
 # allow easy reload of zsh
 alias rezsh="source ~/.zshrc"
+
+# allow easy cd'ing to the root of the current git project
+alias root='cd "`git rev-parse --show-toplevel`"'
 
 # make vi target the version of vim installed by homebrew
 alias vi="vim"
