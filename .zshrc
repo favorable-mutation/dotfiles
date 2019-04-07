@@ -155,7 +155,7 @@ alias py-env="source ./bin/activate"
 alias zshrc="${EDITOR:-vi} ~/.zshrc"
 
 # allow easy configuration of zsh for personal aliases
-alias zshrc-p="${EDITOR:-vi} ~/.zsh_personal"
+alias zshrc-p="${EDITOR:-vi} ~/gmnt/home/etc/.zsh_personal"
 
 # allow easy configuration of vim 
 alias vimrc="${EDITOR:-vi} ~/.vimrc"
@@ -187,7 +187,7 @@ compctl -g "*.md" knit
 
 # add commands and aliases that contain personal info or only work with my
 # mounted filesystem
-. ~/.zsh_personal
+# source ~/gmnt/home/etc/.zsh_personal
 
 # keep brew updated by running updates on shell init
 brew update &
