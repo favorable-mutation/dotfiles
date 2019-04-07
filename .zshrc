@@ -107,8 +107,8 @@ export LANG="en_US.UTF-8"
 
 # end oh-my-zsh config ------------------------------------------------ #
 
-# explicitly set $PATH every time zsh is opened
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Racket v7.0/"
+# explicitly set $PATH every time zsh is opened, including brew bin and sbin paths
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Racket v7.0/"
 
 # make vim the default shell editor
 export EDITOR="/usr/local/bin/vim"
@@ -119,11 +119,19 @@ export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
+# TODO
+# make vim only autocomplete with human-readable files
+# setopt extendedglob
+# compctl -g "*.md" vim
+
 # allow easy reload of zsh
 alias rezsh="source ~/.zshrc"
 
 # allow easy cd'ing to the root of the current git project
 alias root='cd "`git rev-parse --show-toplevel`"'
+
+# allow easy editing of the .gitignore file for this git project
+alias gitig='vim "`git rev-parse --show-toplevel`"/.gitignore'
 
 # make vi target the version of vim installed by homebrew
 alias vi="vim"
@@ -155,12 +163,31 @@ alias vimrc="${EDITOR:-vi} ~/.vimrc"
 # allow easy configuration of xpdf
 alias xpdfrc="${EDITOR:-vi} ~/.xpdfrc"
 
+# allow easy backgrounded serving of mongodb
+alias mongo.serve="mongod --config /usr/local/etc/mongod.conf &"
+
 # make git-a a shell command for easier version control
 git-a() {
     git add --interactive
     git commit
 }
 
+# shortcut for making pdfs from mds using pandoc
+knit() {
+    input="$1"
+    suffix="md"
+    swap="pdf"
+    output="${input/$suffix/$swap}"
+
+    pandoc $input -o $output -t html
+}
+
+# make it only autocomplete with md files
+compctl -g "*.md" knit
+
 # add commands and aliases that contain personal info or only work with my
 # mounted filesystem
 . ~/.zsh_personal
+
+# keep brew updated by running updates on shell init
+brew update &

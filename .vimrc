@@ -54,6 +54,9 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " END RACKET DEFAULTS -------------------------------------------
 
+" no search highlighting, plz
+set nohlsearch
+
 " use vim as the pager within vim
 let $PAGER=''
 
