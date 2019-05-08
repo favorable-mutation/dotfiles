@@ -119,6 +119,12 @@ export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
+# be a zsh n00b and manually set zsh keymode to vim
+bindkey -v
+
+# set time for mode switch in zsh to 0.1s
+export KEYTIMEOUT=1
+
 # TODO
 # make vim only autocomplete with human-readable files
 # setopt extendedglob
@@ -164,13 +170,11 @@ alias vimrc="${EDITOR:-vi} ~/.vimrc"
 alias xpdfrc="${EDITOR:-vi} ~/.xpdfrc"
 
 # allow easy backgrounded serving of mongodb
-alias mongo.serve="mongod --config /usr/local/etc/mongod.conf &"
+alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"
 
-# make git-a a shell command for easier version control
-git-a() {
-    git add --interactive
-    git commit
-}
+# don't make hasty git decisions
+alias git='git '
+alias add='add -i'
 
 # shortcut for making pdfs from mds using pandoc
 knit() {
@@ -180,6 +184,12 @@ knit() {
     output="${input/$suffix/$swap}"
 
     pandoc $input -o $output -t html
+}
+
+# make dot-file a shell command for easier dotfile repo inclusion of config files that live in ~/
+dot-file() {
+    mv "$1" ~/etc/
+    ln -s ~/etc/$1 "$1"
 }
 
 # make it only autocomplete with md files

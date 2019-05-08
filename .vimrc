@@ -6,6 +6,9 @@ call plug#begin('~/.vim/plugged')
 " add snow theme plugin
 Plug 'nightsense/snow'
 
+" add gruvbox theme plugin
+Plug 'morhetz/gruvbox'
+
 " add emmet plugin for HTML expansions
 Plug 'mattn/emmet-vim'
 
@@ -25,7 +28,7 @@ Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 " set colorscheme from snow plugin
-colorscheme snow
+colorscheme gruvbox
 
 " set background for snow theme to dark
 set background=dark
@@ -37,10 +40,13 @@ set laststatus=2
 set noshowmode
 
 " set the lightline colorscheme
-let g:lightline = {'colorscheme': 'jellybeans'}
+let g:lightline = {'colorscheme': 'seoul256'}
 
 " activate builtin macro for jumping between html open/close tags
 runtime macros/matchit.vim
+
+" verbose autoformat mode
+let g:autoformat_verbosemode=1
 
 " END PLUGIN CONFIG ---------------------------------------------
 
@@ -75,6 +81,9 @@ set textwidth=80
 " add t to formatoptions
 set fo+=t
 
+" hide redundant filename on open
+set shortmess=F
+
 " map control o to toggle open/closed NERDTree
 nnoremap <C-o> :NERDTreeToggle<CR>
 
@@ -83,6 +92,8 @@ nnoremap <Enter> o<ESC>
 
 " map Terminal.app's weird fn + enter keycode for the same purpose above cursor
 nnoremap OM  O<ESC>
+
+nnoremap <C-i> :Autoformat<CR>
 
 " define a command for putting every HTML tag on its own line
 command! -bar TagLine %s/<[^>]*>/\r&\r/g | g/^\s*$/d

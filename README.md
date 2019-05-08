@@ -1,2 +1,2 @@
-# dotfiles
-A growing repo of my configuration files for macOS, including .vimrc and .zshrc.
+# Usage
+Run the scripts from the command line in order.

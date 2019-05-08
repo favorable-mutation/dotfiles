@@ -88,3 +88,7 @@ pom.xml
 # Ignore Generated Javadoc #
 ############################
 code/doc/
+
+# Emacs #
+#########
+*~
