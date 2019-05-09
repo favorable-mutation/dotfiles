@@ -14,8 +14,8 @@ chmod u+x ~/.chunkwmrc
 rm ~/.config/kitty/kitty.conf
 ln -s ~/etc/.config/kitty.conf ~/.config/kitty/
 
-# reload shell with config
-source ~/.zshrc
-
 # setup global gitignore
 printf "excludesfile = ~/.gitignore_global\nautocrlf = input" >> ~/.gitconfig
+
+# reload shell with config
+source ~/.zshrc

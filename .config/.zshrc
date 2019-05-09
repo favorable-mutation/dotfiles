@@ -200,4 +200,4 @@ compctl -g "*.md" knit
 # source ~/gmnt/home/etc/.zsh_personal
 
 # keep brew updated by running updates on shell init
-brew update &
+brew update && brew upgrade &
