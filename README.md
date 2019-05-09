@@ -17,8 +17,10 @@ To setup a new machine:
     the windows will not. My workaround is to create a shortcut for switching
     desktops from the keyboard under `System Preferences > Keyboard > Shortcuts >
     Mission Control > Mission Control > Move left a space`.
+    
+*   Install [Homebrew](https://brew.sh/).
 
-*   Clone the repo to a `~/etc` folder; setup commands assume this path, and
+*   Clone this repo to a `~/etc` folder; setup commands assume this path, and
     assume that your home directory is at `/Users/<username>/`. You will need to
     modify paths in the init scripts if you have different needs.
 
