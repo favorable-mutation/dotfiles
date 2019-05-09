@@ -23,7 +23,7 @@ To setup a new machine:
     modify paths in the init scripts if you have different needs.
 
     ```
-    git clone ...
+    git clone https://github.com/favorable-mutation/dotfiles.git ~/etc
     ```
 
 *   Make the `~/etc/init/` scripts executable:
