@@ -188,8 +188,8 @@ knit() {
 
 # make dot-file a shell command for easier dotfile repo inclusion of config files that live in ~/
 dot-file() {
-    mv "$1" ~/etc/
-    ln -s ~/etc/$1 "$1"
+    mv "$1" ~/etc/.config/
+    ln -s ~/etc/.config/$1 "$1"
 }
 
 # make it only autocomplete with md files
