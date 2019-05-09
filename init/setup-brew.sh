@@ -41,6 +41,10 @@ brew install wget 1>>~/brew.log 2>>~/brew.err
 brew install xpdf 1>>~/brew.log 2>>~/brew.err
 brew install zsh 1>>~/brew.log 2>>~/brew.err
 
+# fonts for xpdf
+brew install ghostscript 1>>~/brew.log 2>>~/brew.err
+brew link --overwrite ghostscript 1>>~/brew.log 2>>~/brew.err
+
 # fun non-utilities/essentials
 printf "\n\n### misc ###\n\n" >> ~/brew.log >> ~/brew.err
 brew install asciiquarium 1>>~/brew.log 2>>~/brew.err
