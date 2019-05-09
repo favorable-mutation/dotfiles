@@ -2,7 +2,8 @@
 
 To setup a new machine:
 
-*   If you want to use the desktop-switching features of `chunkwm` with macOS
+*   If you want to use the desktop-switching features of
+    [chunkwm](https://koekeishiya.github.io/chunkwm/) with macOS
     Mojave, you'll need to boot the machine into Recovery Mode and disable SIP.
     To do so, restart the computer while holding down `Cmd + R`, navigate to
     `Utilities > Terminal`, and run the following command.  
@@ -34,10 +35,16 @@ To setup a new machine:
     chmod u+x ~/etc/init/*.sh
     ```
 
-*   Run the scripts in the following order:
+*   Make any changes you want to the scripts with your favorite editor. I would
+    recommend carefully looking through each script to see what it does, and
+    adjusting any settings that you will not need. The first script sets a ton
+    of user preferences for macOS. The second installs several programs from
+    Homebrew. The output for the second script is written to `~/brew.log` and
+    `~/brew.err`. The third links my configuration files into place. Run the
+    scripts in the following order:
 
     ```
     ./setup-macos.sh
-    ./setup-brew.sh
+    ./setup-brew.sh &
     ./setup-env.sh
     ```
