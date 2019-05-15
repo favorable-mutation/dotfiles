@@ -60,6 +60,9 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " END RACKET DEFAULTS -------------------------------------------
 
+" this is from the kitty FAQ to avoid weird background color issues
+let &t_ut=''
+
 " no search highlighting, plz
 set nohlsearch
 
