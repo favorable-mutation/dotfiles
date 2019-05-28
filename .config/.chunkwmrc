@@ -50,7 +50,7 @@ chunkc set custom_bar_offset_left        0
 chunkc set custom_bar_offset_right       0
 
 chunkc set global_desktop_mode           bsp
-chunkc set global_desktop_offset_top     50
+chunkc set global_desktop_offset_top     20
 chunkc set global_desktop_offset_bottom  20
 chunkc set global_desktop_offset_left    20
 chunkc set global_desktop_offset_right   20
@@ -83,8 +83,8 @@ chunkc set mouse_follows_focus           intrinsic
 chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
-chunkc set mouse_move_window             \"fn 1\"
-chunkc set mouse_resize_window           \"fn 2\"
+# chunkc set mouse_move_window             \"fn 1\"
+# chunkc set mouse_resize_window           \"fn 2\"
 chunkc set mouse_motion_interval         35
 
 # chunkc set preselect_border_color        0x5f72e786

@@ -2,7 +2,7 @@
 eval $(thefuck --alias)
 
 # activate jenv automatically
-eval "$(jenv init -)"
+# eval "$(jenv init -)"
 
 # begin oh-my-zsh config ------------------------------------------------ #
 
@@ -108,16 +108,20 @@ export LANG="en_US.UTF-8"
 # end oh-my-zsh config ------------------------------------------------ #
 
 # explicitly set $PATH every time zsh is opened, including brew bin and sbin paths
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Racket v7.0/"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+
+# appease rbenv
+# eval "$(rbenv init -)"
 
 # make vim the default shell editor
 export EDITOR="/usr/local/bin/vim"
 
 # and make vim the default shell pager
-export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-    vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-    -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+# export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+#    vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+#    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+#    -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+export PAGER=less
 
 # be a zsh n00b and manually set zsh keymode to vim
 bindkey -v

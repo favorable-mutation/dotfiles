@@ -24,6 +24,18 @@ Plug 'tpope/vim-surround'
 " add autoformat plugin
 Plug 'Chiel92/vim-autoformat'
 
+" add tabular plugin
+Plug 'godlygeek/tabular'
+
+" add vim-markdown plugin
+Plug 'plasticboy/vim-markdown'
+
+" add the fugitive git integration plugin
+Plug 'tpope/vim-fugitive'
+
+" add lightline buffer list plugin
+Plug 'mengelbrecht/lightline-bufferline'
+
 " end vim-plug call
 call plug#end()
 
@@ -39,8 +51,47 @@ set laststatus=2
 " don't display mode below lightline in original mode display location
 set noshowmode
 
+" show the tabline always
+set showtabline=2
+
+" initialize lightline config
+let g:lightline = {}
+
 " set the lightline colorscheme
-let g:lightline = {'colorscheme': 'seoul256'}
+let g:lightline.colorscheme = 'seoul256'
+
+" add in lightline fugitive integration
+let g:lightline.active = {
+            \ 'left': [ [ 'mode', 'paste' ],
+            \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+            \ }
+
+let g:lightline.component_function = {
+            \ 'gitbranch': 'fugitive#head',
+            \ }
+
+" add in buffer list with plugin's 'default' config
+
+let g:lightline#bufferline#show_number = 1
+
+let g:lightline#bufferline#shorten_path = 0
+
+let g:lightline#bufferline#filename_modifier = ':t'
+
+let g:lightline#bufferline#unnamed = '[No Name]'
+
+let g:lightline.tabline = {
+            \ 'left': [ [ 'buffers' ] ],
+            \ 'right': [ [ 'close' ] ],
+            \ }
+
+let g:lightline.component_expand = {
+            \ 'buffers': 'lightline#bufferline#buffers',
+            \ }
+
+let g:lightline.component_type = {
+            \ 'buffers': 'tabsel',
+            \ }
 
 " activate builtin macro for jumping between html open/close tags
 runtime macros/matchit.vim
@@ -59,6 +110,37 @@ syntax on filetype on filetype indent on filetype plugin on
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " END RACKET DEFAULTS -------------------------------------------
+
+" get rid of folding
+let g:vim_markdown_folding_disabled = 1
+
+" add shell = sh for code blocks
+let g:vim_markdown_fenced_languages = ['shell=sh']
+
+" kitty doesn't like bkgd
+let &t_ut=''
+
+" fun gui options for macvim
+if has('gui_running')
+
+    " macvim font shenanigans
+    set guifont=Hack:h16
+
+    " get rid of those gui tabs (macvim)
+    set guioptions-=e
+
+    " macvim color shenanigans
+    let g:terminal_ansi_colors = [
+                \ '#282828','#CC241D','#50971A','#D79921','#458588','#B16286',
+                \ '#689D6A','#A89984','#928374','#FB4934','#B8BB26','#FABD2F',
+                \ '#83A598', '#D3869B','#8EC07C','#EBDBB2'
+                \ ]
+
+endif
+
+
+" no case sensitivity
+set ignorecase
 
 " no search highlighting, plz
 set nohlsearch
@@ -88,12 +170,21 @@ set shortmess=F
 nnoremap <C-o> :NERDTreeToggle<CR>
 
 " map enter for easy newline insertion without entering insert mode
-nnoremap <Enter> o<ESC>
+" nnoremap <Enter> o<ESC>
+
+" who needs tag stacks anyway? let's make it a terminal window
+nnoremap <C-t> :terminal<CR>
+
+" make z a leader key for vim wm commands
+"nnoremap z <C-w>
 
 " map Terminal.app's weird fn + enter keycode for the same purpose above cursor
-nnoremap OM  O<ESC>
+" nnoremap OM  O<ESC>
 
-nnoremap <C-i> :Autoformat<CR>
+" nnoremap <C-i> :Autoformat<CR>
+
+" pls get me tf out of this built-in terminal
+tnoremap <ESC> <C-\><C-n>
 
 " define a command for putting every HTML tag on its own line
 command! -bar TagLine %s/<[^>]*>/\r&\r/g | g/^\s*$/d

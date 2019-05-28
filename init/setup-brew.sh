@@ -11,15 +11,16 @@ brew upgrade 1>>~/brew.log 2>>~/brew.err
 # install window manager components
 # fix switching workspaces as per issue #571 on chunkwm github
 printf "\n\n### chunkwm ###\n\n" >> ~/brew.log >> ~/brew.err
-#brew install --HEAD chunkwm 1>>~/brew.log 2>>~/brew.err
-#sudo chunkwm --uninstall-sa
-#pkill Dock
-#sudo chunkwm --install-sa
-#brew services start chunkwm
+brew tap koekeishiya/formulae
+brew install --HEAD chunkwm 1>>~/brew.log 2>>~/brew.err
+sudo chunkwm --uninstall-sa
+pkill Dock
+sudo chunkwm --install-sa
+brew services start chunkwm
 
 # install skhd
-#brew install skhd 1>>~/brew.log 2>>~/brew.err
-#brew services start skhd
+brew install skhd 1>>~/brew.log 2>>~/brew.err
+brew services start skhd
 
 # languages
 printf "\n\n### languages ###\n\n" >> ~/brew.log >> ~/brew.err
@@ -30,15 +31,18 @@ brew install r 1>>~/brew.log 2>>~/brew.err
 printf "\n\n### cli ###\n\n" >> ~/brew.log >> ~/brew.err
 brew install bash 1>>~/brew.log 2>>~/brew.err
 brew install findutils 1>>~/brew.log 2>>~/brew.err
+brew install ffmpeg 1>>~/brew.log 2>>~/brew.err
 brew install git 1>>~/brew.log 2>>~/brew.err
+brew install grip 1>>~/brew.log 2>>~/brew.err
 brew install jq 1>>~/brew.log 2>>~/brew.err
+brew install macvim 1>>~/brew.log 2>>~/brew.err
 brew install pandoc 1>>~/brew.log 2>>~/brew.err
 brew install thefuck 1>>~/brew.log 2>>~/brew.err
 brew install tidy-html5 1>>~/brew.log 2>>~/brew.err
 brew install tree 1>>~/brew.log 2>>~/brew.err
-brew install vim 1>>~/brew.log 2>>~/brew.err
 brew install wget 1>>~/brew.log 2>>~/brew.err
 brew install xpdf 1>>~/brew.log 2>>~/brew.err
+brew install youtube-dl 1>>~/brew.log 2>>~/brew.err
 brew install zsh 1>>~/brew.log 2>>~/brew.err
 
 # fonts for xpdf

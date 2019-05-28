@@ -85,6 +85,9 @@
 # open terminal, blazingly fast compared to iTerm/Hyper
 cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
+# open macvim
+cmd - m : open -a /usr/local/Cellar/macvim/8.1-155/MacVim.app
+
 # open qutebrowser
 #cmd + shift - return : ~/Scripts/qtb.sh
 
@@ -99,7 +102,8 @@ cmd + ctrl - w : chunkc tiling::window --close
 # up/down in tiling mode and next/prev in monocle mode
 cmd - h : chunkc tiling::window --focus west
 cmd - j : chunkc tiling::window --focus south
-cmd - k : chunkc tiling::window --focus north
+# TODO slack fml
+# cmd - k : chunkc tiling::window --focus north
 cmd - l : chunkc tiling::window --focus east
 
 ctrl - j : chunkc tiling::window --focus prev
@@ -183,8 +187,8 @@ shift + cmd + ctrl - 8 : chunkc tiling::window --send-to-desktop 6; chunkc tilin
 shift + cmd + ctrl - 9 : chunkc tiling::window --send-to-desktop 6; chunkc tiling::desktop --focus 9
 
 # focus monitor
-# ctrl + alt - z  : chunkc tiling::monitor -f prev
-# ctrl + alt - c  : chunkc tiling::monitor -f next
+cmd + ctrl - n  : chunkc tiling::monitor -f prev
+cmd + ctrl - m  : chunkc tiling::monitor -f next
 # ctrl + alt - 1  : chunkc tiling::monitor -f 1
 # ctrl + alt - 2  : chunkc tiling::monitor -f 2
 # ctrl + alt - 3  : chunkc tiling::monitor -f 3
@@ -258,7 +262,7 @@ cmd + ctrl - x : chunkc tiling::desktop --mirror horizontal
 
 # change layout of desktop
 cmd + ctrl - u : chunkc tiling::desktop --layout bsp
-cmd + ctrl - n : chunkc tiling::desktop --layout monocle
+cmd + ctrl - i : chunkc tiling::desktop --layout monocle
 # ctrl + alt - d : chunkc tiling::desktop --layout float
 
 # ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
