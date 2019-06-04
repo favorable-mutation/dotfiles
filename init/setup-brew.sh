@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO add install and setup for pecan, change color
+
 # update
 printf "\n\n### brew update ###\n\n" > ~/brew.log > ~/brew.err
 brew update 1>>~/brew.log 2>>~/brew.err

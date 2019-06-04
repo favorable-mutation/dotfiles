@@ -117,7 +117,7 @@ let g:vim_markdown_folding_disabled = 1
 " add shell = sh for code blocks
 let g:vim_markdown_fenced_languages = ['shell=sh']
 
-" kitty doesn't like bkgd
+" this is from the kitty FAQ to avoid weird background color issues
 let &t_ut=''
 
 " fun gui options for macvim
