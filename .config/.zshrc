@@ -69,6 +69,8 @@ ZSH_THEME="common"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  docker
+  docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -175,6 +177,9 @@ alias xpdfrc="${EDITOR:-vi} ~/.xpdfrc"
 
 # allow easy backgrounded serving of mongodb
 alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"
+
+# easier docker-compose
+alias dc="docker-compose "
 
 # don't make hasty git decisions
 alias git='git '
