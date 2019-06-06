@@ -111,6 +111,10 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " END RACKET DEFAULTS -------------------------------------------
 
+" if file changes (aside from deletion) outside of vim and no local changes
+" exist in the buffer, auto-reload it
+set autoread
+
 " get rid of folding
 let g:vim_markdown_folding_disabled = 1
 
@@ -174,6 +178,30 @@ nnoremap <C-o> :NERDTreeToggle<CR>
 
 " who needs tag stacks anyway? let's make it a terminal window
 nnoremap <C-t> :terminal<CR>
+
+" getting real tired of pressing shift
+nnoremap ; :
+nnoremap : ;
+inoremap 1 !
+inoremap ! 1
+inoremap 2 @
+inoremap @ 2
+inoremap 3 #
+inoremap # 3
+inoremap 4 $
+inoremap $ 4
+inoremap 5 %
+inoremap % 5
+inoremap 6 ^
+inoremap ^ 6
+inoremap 7 &
+inoremap & 7
+inoremap 8 *
+inoremap * 8
+inoremap 9 (
+inoremap ( 9
+inoremap 0 )
+inoremap ) 0
 
 " make z a leader key for vim wm commands
 "nnoremap z <C-w>
