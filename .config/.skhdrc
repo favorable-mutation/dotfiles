@@ -69,21 +69,18 @@
 #
 # from 'default' mode, activate mode 'normal'
 ctrl - space ; normal
-hyper - j ; normal
 #
 # from 'normal' mode, activate mode 'default'
 normal < escape ; default
 normal < i ; default
 normal < a ; default
 normal < ctrl - space ; default
-normal < hyper - j ; default
 normal < r ; resize
 # ditto for resize mode
 resize < escape ; default
 resize < i ; default
 resize < a ; default
 resize < ctrl - space ; normal
-resize < hyper - j ; normal
 resize < r ; normal
 #
 # launch a new terminal instance when in either 'default' or 'test' mode
@@ -102,6 +99,9 @@ normal < return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance
 
 # open macvim
 normal < m : open -a /usr/local/Cellar/macvim/8.1-155/MacVim.app
+
+# open spotlight search
+normal < space : open -a /usr/local/Cellar/macvim/8.1-155/MacVim.app
 
 # open qutebrowser
 #cmd + shift - return : ~/Scripts/qtb.sh
