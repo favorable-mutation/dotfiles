@@ -170,6 +170,9 @@ set fo+=t
 " hide redundant filename on open
 set shortmess=F
 
+" .env* files should generally have sh syntax
+autocmd BufNewFile,BufRead *env* set syntax=sh
+
 " map control o to toggle open/closed NERDTree
 nnoremap <C-o> :NERDTreeToggle<CR>
 
@@ -212,7 +215,8 @@ inoremap ) 0
 " nnoremap <C-i> :Autoformat<CR>
 
 " pls get me tf out of this built-in terminal
-tnoremap <ESC> <C-\><C-n>
+nnoremap <C-e> a
+tnoremap <C-e> <C-\><C-n>
 
 " define a command for putting every HTML tag on its own line
 command! -bar TagLine %s/<[^>]*>/\r&\r/g | g/^\s*$/d

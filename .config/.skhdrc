@@ -98,7 +98,7 @@ resize < r ; normal
 normal < return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 # open macvim
-normal < m : open -a /usr/local/Cellar/macvim/8.1-155/MacVim.app
+normal < m : open -a `find /usr/local/Cellar/macvim -maxdepth 1 | sort --version-sort --reverse | head -n 1`/MacVim.app
 
 # open qutebrowser
 #cmd + shift - return : ~/Scripts/qtb.sh
