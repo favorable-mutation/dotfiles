@@ -72,12 +72,14 @@ ctrl - space ; normal
 #
 # from 'normal' mode, activate mode 'default'
 normal < escape ; default
+normal < 0x24 ; default
 normal < i ; default
 normal < a ; default
 normal < ctrl - space ; default
 normal < r ; resize
 # ditto for resize mode
 resize < escape ; default
+resize < 0x24 ; default
 resize < i ; default
 resize < a ; default
 resize < ctrl - space ; normal
