@@ -173,6 +173,12 @@ set fo+=t
 " hide redundant filename on open
 set shortmess=F
 
+" differentiate cw and cW for variable names in python with underscores
+set iskeyword-=_
+
+" .env* files should generally have sh syntax
+autocmd BufNewFile,BufRead *env* set syntax=sh
+
 " map control o to toggle open/closed NERDTree
 nnoremap <C-o> :NERDTreeToggle<CR>
 
@@ -214,8 +220,12 @@ inoremap ) 0
 
 " nnoremap <C-i> :Autoformat<CR>
 
+" what if Enter was Esc?
+inoremap <CR> <Esc>
+
 " pls get me tf out of this built-in terminal
-tnoremap <ESC> <C-\><C-n>
+nnoremap <C-e> a
+tnoremap <C-e> <C-\><C-n>
 
 " define a command for putting every HTML tag on its own line
 command! -bar TagLine %s/<[^>]*>/\r&\r/g | g/^\s*$/d
