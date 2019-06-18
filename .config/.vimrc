@@ -221,6 +221,7 @@ inoremap ) 0
 " nnoremap <C-i> :Autoformat<CR>
 
 " what if Enter was Esc?
+nnoremap <CR> <Esc>
 inoremap <CR> <Esc>
 
 " pls get me tf out of this built-in terminal

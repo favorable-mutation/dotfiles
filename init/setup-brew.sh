@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO add install and setup for pecan, change color
+# TODO chunkwm and skhd cert signing step
 
 # update
 printf "\n\n### brew update ###\n\n" > ~/brew.log > ~/brew.err
@@ -42,6 +43,7 @@ brew install pandoc 1>>~/brew.log 2>>~/brew.err
 brew install thefuck 1>>~/brew.log 2>>~/brew.err
 brew install tidy-html5 1>>~/brew.log 2>>~/brew.err
 brew install tree 1>>~/brew.log 2>>~/brew.err
+brew install watch 1>>~/brew.log 2>>~/brew.err
 brew install wget 1>>~/brew.log 2>>~/brew.err
 brew install xpdf 1>>~/brew.log 2>>~/brew.err
 brew install youtube-dl 1>>~/brew.log 2>>~/brew.err
@@ -64,7 +66,8 @@ brew install pipes-sh 1>>~/brew.log 2>>~/brew.err
 # irssi
 # mongodb
 # mutt
-# mysql
+# mysql/psql
+# docker
 
 # casks
 printf "\n\n### casks ###\n\n" >> ~/brew.log >> ~/brew.err
