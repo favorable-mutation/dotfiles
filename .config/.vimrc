@@ -36,6 +36,9 @@ Plug 'tpope/vim-fugitive'
 " add lightline buffer list plugin
 Plug 'mengelbrecht/lightline-bufferline'
 
+" script editing with fountain
+Plug 'vim-scripts/fountain.vim'
+
 " end vim-plug call
 call plug#end()
 

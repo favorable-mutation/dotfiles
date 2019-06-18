@@ -195,14 +195,21 @@ knit() {
     pandoc $input -o $output -t html
 }
 
+# make it only autocomplete with md files
+compctl -g "*.md" knit
+
+# shortcut for making pdfs from wraps using wrap
+gwrap() {
+    wrap pdf "$1" --font "$WRAP_FONT"
+}
+
+compctl -g "*.wrap" gwrap
+
 # make dot-file a shell command for easier dotfile repo inclusion of config files that live in ~/
 dot-file() {
     mv "$1" ~/etc/.config/
     ln -s ~/etc/.config/$1 "$1"
 }
-
-# make it only autocomplete with md files
-compctl -g "*.md" knit
 
 # add commands and aliases that contain personal info or only work with my
 # mounted filesystem
