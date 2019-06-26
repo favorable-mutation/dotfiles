@@ -4,7 +4,7 @@
 call plug#begin('~/.vim/plugged')
 
 " add snow theme plugin
-Plug 'nightsense/snow'
+Plug 'flazz/vim-colorschemes'
 
 " add gruvbox theme plugin
 Plug 'morhetz/gruvbox'
@@ -43,7 +43,7 @@ Plug 'vim-scripts/fountain.vim'
 call plug#end()
 
 " set colorscheme from snow plugin
-colorscheme gruvbox
+colorscheme lizard
 
 " set background for snow theme to dark
 set background=dark
@@ -61,7 +61,7 @@ set showtabline=2
 let g:lightline = {}
 
 " set the lightline colorscheme
-let g:lightline.colorscheme = 'seoul256'
+let g:lightline.colorscheme = 'wombat'
 
 " add in lightline fugitive integration
 let g:lightline.active = {

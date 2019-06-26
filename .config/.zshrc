@@ -178,12 +178,18 @@ alias xpdfrc="${EDITOR:-vi} ~/.xpdfrc"
 # allow easy backgrounded serving of mongodb
 alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"
 
+# easier docker
+alias dr="docker "
+
 # easier docker-compose
 alias dc="docker-compose "
 
 # don't make hasty git decisions
 alias git='git '
 alias add='add -i'
+
+# open files in the current MacVim window using the mvim command
+alias mvim='open -a MacVim '
 
 # shortcut for making pdfs from mds using pandoc
 knit() {
