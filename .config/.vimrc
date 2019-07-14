@@ -205,6 +205,7 @@ inoremap 0 )
 inoremap ) 0
 
 " what if Enter was Esc?
+nnoremap <CR> <Esc>
 inoremap <CR> <Esc>
 vnoremap <CR> <Esc>
 

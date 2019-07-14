@@ -216,4 +216,10 @@ dot-file() {
 # source ~/gmnt/home/etc/.zsh_personal
 
 # keep brew updated by running updates on shell init
-brew update && brew upgrade &
+update() {
+    brew update
+    brew upgrade
+    brew cask upgrade
+}
+
+update > ~/.brew.log 2>&1 &
