@@ -184,9 +184,8 @@ alias dr="docker "
 # easier docker-compose
 alias dc="docker-compose "
 
-# don't make hasty git decisions
-alias git='git '
-alias add='add -i'
+# quick interface to interactive git add
+alias gadd='git add -i'
 
 # open files in the current MacVim window using the mvim command
 alias mvim='open -a MacVim '
@@ -221,6 +220,14 @@ compctl -g "*.wrap" gwrap
 dot-file() {
     mv "$1" ~/etc/.config/
     ln -s ~/etc/.config/$1 "$1"
+}
+
+# manage dotfiles repo
+dot() {
+    cd ~/etc
+    git add .
+    git commit
+    git push origin master
 }
 
 # add commands and aliases that contain personal info or only work with my
