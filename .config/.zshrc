@@ -191,6 +191,12 @@ alias add='add -i'
 # open files in the current MacVim window using the mvim command
 alias mvim='open -a MacVim '
 
+# restart chunkwm and skhd
+rewm() {
+    brew services restart chunkwm
+    brew services restart skhd
+}
+
 # shortcut for making pdfs from mds using pandoc
 knit() {
     input="$1"

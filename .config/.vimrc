@@ -43,7 +43,7 @@ Plug 'vim-scripts/fountain.vim'
 call plug#end()
 
 " set colorscheme from snow plugin
-colorscheme lizard
+colorscheme base16-railscasts
 
 " set background for snow theme to dark
 set background=dark
@@ -61,7 +61,7 @@ set showtabline=2
 let g:lightline = {}
 
 " set the lightline colorscheme
-let g:lightline.colorscheme = 'wombat'
+let g:lightline.colorscheme = 'one'
 
 " add in lightline fugitive integration
 let g:lightline.active = {
@@ -138,9 +138,22 @@ if has('gui_running')
 
     " macvim color shenanigans
     let g:terminal_ansi_colors = [
-                \ '#282828','#CC241D','#50971A','#D79921','#458588','#B16286',
-                \ '#689D6A','#A89984','#928374','#FB4934','#B8BB26','#FABD2F',
-                \ '#83A598', '#D3869B','#8EC07C','#EBDBB2'
+                \ "#2b2b2b",
+                \ "#da4939",
+                \ "#a5c261",
+                \ "#ffc66d",
+                \ "#6d9cbe",
+                \ "#b6b3eb",
+                \ "#519f50",
+                \ "#e6e1dc",
+                \ "#5a647e",
+                \ "#da4939",
+                \ "#a5c261",
+                \ "#ffc66d",
+                \ "#6d9cbe",
+                \ "#b6b3eb",
+                \ "#519f50",
+                \ "#f9f7f3"
                 \ ]
 
 endif
@@ -221,8 +234,8 @@ inoremap ) 0
 " nnoremap <C-i> :Autoformat<CR>
 
 " what if Enter was Esc?
-nnoremap <CR> <Esc>
-inoremap <CR> <Esc>
+" nnoremap <CR> <Esc>
+" inoremap <CR> <Esc>
 
 " pls get me tf out of this built-in terminal
 nnoremap <C-e> a
