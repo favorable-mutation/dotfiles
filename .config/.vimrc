@@ -99,9 +99,9 @@ runtime macros/matchit.vim
 " we don't like yapf or autopep8 :(
 let g:formatters_python = ['black']
 
-" format code with black automatically when opening or writing a python file
+" format code with black automatically when writing a .py file
 augroup autoformat_settings
-    autocmd BufRead,BufWritePre *.py Autoformat
+    autocmd BufWritePre *.py Autoformat
 augroup END
 
 
