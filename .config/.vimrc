@@ -18,7 +18,7 @@ Plug 'scrooloose/nerdtree'
 " add vim.surround plugin for better html tag editing
 Plug 'tpope/vim-surround'
 
-" add autoformat plugin
+" add autoformatting plugin
 Plug 'Chiel92/vim-autoformat'
 
 " add tabular plugin
@@ -36,8 +36,12 @@ Plug 'mengelbrecht/lightline-bufferline'
 " script editing with fountain
 Plug 'vim-scripts/fountain.vim'
 
+" coffeescript support
+Plug 'kchmck/vim-coffee-script'
+
 " end vim-plug call
 call plug#end()
+
 
 "------- Configure Plugins --------
 
@@ -92,8 +96,14 @@ let g:lightline.component_type = {
 " activate builtin macro for jumping between html open/close tags
 runtime macros/matchit.vim
 
-" verbose autoformat mode
-let g:autoformat_verbosemode=1
+" we don't like yapf or autopep8 :(
+let g:formatters_python = ['black']
+
+" format code with black automatically when opening or writing a python file
+augroup autoformat_settings
+    autocmd BufRead,BufWritePre *.py Autoformat
+augroup END
+
 
 "------- Visual Settings --------
 
@@ -161,6 +171,7 @@ set shortmess=F
 " .env* files should generally have sh syntax
 autocmd BufNewFile,BufRead *env* set syntax=sh
 
+
 "------- Editor Behavior --------
 
 " make tab key produce 4 spaces
@@ -184,6 +195,7 @@ set clipboard=unnamed
 
 " auto-wrap based on text width
 set fo+=t
+
 
 "------- Keybinds --------
 
@@ -224,6 +236,7 @@ inoremap ) 0
 " pls get me tf out of this built-in terminal
 nnoremap <C-e> a
 tnoremap <C-e> <C-\><C-n>
+
 
 "------- Custom Commands --------
 
