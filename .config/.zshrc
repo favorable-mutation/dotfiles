@@ -239,6 +239,7 @@ dot() {
     git commit
     git pull origin master
     git push origin master
+    cd -
 }
 
 # add commands and aliases that contain personal info or only work with my
