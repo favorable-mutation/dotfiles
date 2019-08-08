@@ -174,16 +174,13 @@ py-env-init() {
 alias py-env="source ./bin/activate"
 
 # allow easy configuration of zsh
-alias zshrc="${EDITOR:-vi} ~/.zshrc"
-
-# allow easy configuration of zsh for personal aliases
-alias zshrc-p="${EDITOR:-vi} ~/gmnt/home/etc/.zsh_personal"
+alias zshrc="${EDITOR:-vi} ~/etc/.config/.zshrc"
 
 # allow easy configuration of vim 
-alias vimrc="${EDITOR:-vi} ~/.vimrc"
+alias vimrc="${EDITOR:-vi} ~/etc/.config/.vimrc"
 
 # allow easy configuration of xpdf
-alias xpdfrc="${EDITOR:-vi} ~/.xpdfrc"
+alias xpdfrc="${EDITOR:-vi} ~/etc/.config/.xpdfrc"
 
 # allow easy backgrounded serving of mongodb
 alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"

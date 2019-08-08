@@ -247,6 +247,13 @@ nnoremap <Leader>= :winc =<CR>
 nnoremap <Leader>+ :winc +<CR>
 nnoremap <Leader>\| :winc \|<CR>
 
+" on the lam
+
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gp :Gpush<CR>
+
 " getting real tired of pressing shift
 
 nnoremap ; :
