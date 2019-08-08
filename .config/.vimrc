@@ -39,6 +39,18 @@ Plug 'vim-scripts/fountain.vim'
 " coffeescript support
 Plug 'kchmck/vim-coffee-script'
 
+" fuzzy search, uses Tags
+Plug 'junegunn/fzf.vim'
+
+" async lint
+Plug 'w0rp/ale'
+
+" run unit tests
+Plug 'janko-m/vim-test'
+
+" per directory vimrc
+Plug 'embear/vim-localvimrc'
+
 " end vim-plug call
 call plug#end()
 
@@ -211,33 +223,55 @@ nnoremap <C-o> :NERDTreeToggle<CR>
 " who needs tag stacks anyway? let's make it a terminal window
 nnoremap <C-t> :terminal<CR>
 
-" getting real tired of pressing shift
-nnoremap ; :
-nnoremap : ;
-inoremap 1 !
-inoremap ! 1
-inoremap 2 @
-inoremap @ 2
-inoremap 3 #
-inoremap # 3
-inoremap 4 $
-inoremap $ 4
-inoremap 5 %
-inoremap % 5
-inoremap 6 ^
-inoremap ^ 6
-inoremap 7 &
-inoremap & 7
-inoremap 8 *
-inoremap * 8
-inoremap 9 (
-inoremap ( 9
-inoremap 0 )
-inoremap ) 0
+" lead me into space
+let mapleader=" "
 
-" what if Enter was Esc?
-" nnoremap <CR> <Esc>
-" inoremap <CR> <Esc>
+" window management should be easier
+
+nnoremap <Leader>h :winc h<CR>
+nnoremap <Leader>j :winc j<CR>
+nnoremap <Leader>k :winc k<CR>
+nnoremap <Leader>l :winc l<CR>
+
+nnoremap <Leader>H :winc H<CR>
+nnoremap <Leader>J :winc J<CR>
+nnoremap <Leader>K :winc K<CR>
+nnoremap <Leader>L :winc L<CR>
+
+nnoremap <Leader>s :winc s<CR>
+nnoremap <Leader>v :winc v<CR>
+
+nnoremap <Leader>- :winc -<CR>
+nnoremap <Leader>_ :winc _<CR>
+nnoremap <Leader>= :winc =<CR>
+nnoremap <Leader>+ :winc +<CR>
+nnoremap <Leader>\| :winc \|<CR>
+
+" getting real tired of pressing shift
+
+nnoremap ; :
+inoremap 1 !
+inoremap 2 @
+inoremap 3 #
+inoremap 4 $
+inoremap 5 %
+inoremap 6 ^
+inoremap 7 &
+inoremap 8 *
+inoremap 9 (
+inoremap 0 )
+
+nnoremap : ;
+inoremap ! 1
+inoremap @ 2
+inoremap # 3
+inoremap $ 4
+inoremap % 5
+inoremap ^ 6
+inoremap & 7
+inoremap * 8
+inoremap ( 9
+inoremap ) 0
 
 " pls get me tf out of this built-in terminal
 nnoremap <C-e> a
