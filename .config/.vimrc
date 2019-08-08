@@ -122,6 +122,12 @@ augroup autoformat_settings
     autocmd BufWritePre *.py Autoformat
 augroup END
 
+" get rid of folding in markdown files
+let g:vim_markdown_folding_disabled = 1
+
+" add shell = sh for code blocks
+let g:vim_markdown_fenced_languages = ['shell=sh']
+
 
 "------- Visual Settings --------
 
@@ -199,12 +205,6 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 " exist in the buffer, auto-reload it
 set autoread
 
-" get rid of folding in markdown files
-let g:vim_markdown_folding_disabled = 1
-
-" add shell = sh for code blocks
-let g:vim_markdown_fenced_languages = ['shell=sh']
-
 " no case sensitivity
 set ignorecase
 
@@ -247,7 +247,7 @@ nnoremap <Leader>= :winc =<CR>
 nnoremap <Leader>+ :winc +<CR>
 nnoremap <Leader>\| :winc \|<CR>
 
-" on the lam
+" on the lam w/ fugitive
 
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
