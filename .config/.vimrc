@@ -99,6 +99,12 @@ runtime macros/matchit.vim
 " we don't like yapf or autopep8 :(
 let g:formatters_python = ['black']
 
+" turn off autoformat's use of vim's default formatting; black takes care of
+" all that anyway
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
 " format code with black automatically when writing a .py file
 augroup autoformat_settings
     autocmd BufWritePre *.py Autoformat
@@ -156,8 +162,8 @@ set number
 " display a confirmation message when yanking or deleting any number of lines
 set report=0
 
-" set maximum line length to 80 characters
-set textwidth=80
+" set maximum line length to 99 characters
+set textwidth=99
 
 " this is from the kitty FAQ to avoid weird background color issues
 let &t_ut=''

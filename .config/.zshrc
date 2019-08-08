@@ -145,6 +145,16 @@ alias root='cd "`git rev-parse --show-toplevel`"'
 # allow easy editing of the .gitignore file for this git project
 alias gitig='vim "`git rev-parse --show-toplevel`"/.gitignore'
 
+# show files accidentally written during git merge for downstream use
+# e.g. `mergestat | cleanup`
+alias mergestat='find "`git rev-parse --show-toplevel`" | grep "\.orig$"'
+
+# remove files piped into xargs
+alias cleanup="xargs rm"
+
+# easy python linting with typical docker-compose setup
+alias lint='docker-compose run test bash -c "black . && isort -rc . && flake8"'
+
 # make vi target the version of vim installed by homebrew
 alias vi="vim"
 
