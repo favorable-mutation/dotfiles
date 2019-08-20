@@ -1,5 +1,5 @@
 # add an on_enter command to the default mode
-:: default : yabai -m config active_window_border_color 0xff2020ff
+:: default : yabai -m config active_window_border_color 0xFFFFFFFF
 
 # defines a new mode 'normal' with an on_enter command, that captures keypresses
 :: normal @ : yabai -m config active_window_border_color 0xaa72e786
@@ -32,6 +32,9 @@ normal < t : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 # close focused window
 normal < q : yabai -m window --close
 
+# fullscreen the focused window
+normal < space : yabai -m window --toggle zoom-fullscreen
+
 # focus window
 normal < h : yabai -m window --focus west
 normal < j : yabai -m window --focus south
@@ -58,16 +61,22 @@ normal < shift - d : yabai -m window --space prev; yabai -m space --focus prev
 normal < shift - u : yabai -m window --space next; yabai -m space --focus next
 
 # increase window size even if you're at the {direction}-most window
-resize < h : yabai -m window --resize left:-20:0 # && \
-#                yabai -m window --focus west && \
-#                yabai -m window --resize left:-20:0 && \
-#                yabai -m window --focus east
-resize < j : yabai -m window --resize bottom:0:20 # && \
-#                yabai -m window --focus south && \
-#                yabai -m window --resize bottom:0:20 && \
-#                yabai -m window --focus north
-resize < k : yabai -m window --resize top:0:-20
-resize < l : yabai -m window --resize right:20:0
+resize < h : yabai -m window --resize left:-20:0  && \
+                yabai -m window --focus east && \
+                yabai -m window --resize left:-20:0 && \
+                yabai -m window --focus west
+resize < j : yabai -m window --resize bottom:0:20 && \
+                yabai -m window --focus north && \
+                yabai -m window --resize bottom:0:20 && \
+                yabai -m window --focus south
+resize < k : yabai -m window --resize top:0:-20 && \
+                yabai -m window --focus south && \
+                yabai -m window --resize top:0:20 && \
+                yabai -m window --focus north
+resize < l : yabai -m window --resize right:20:0 && \
+                yabai -m window --focus west && \
+                yabai -m window --resize right:0:20 && \
+                yabai -m window --focus east
 
 # mirror tree y-axis
 normal < y : yabai -m space --mirror y-axis
@@ -77,4 +86,4 @@ normal < x : yabai -m space --mirror x-axis
 
 # change layout of desktop
 normal < b : yabai -m space --layout bsp
-normal < n : yabai -m space --layout monocle
+normal < n : yabai -m space --layout float

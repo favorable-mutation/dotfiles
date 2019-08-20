@@ -109,7 +109,7 @@ alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"
 
 # restart chunkwm and skhd
 rewm() {
-    brew services restart chunkwm
+    brew services restart yabai
     brew services restart skhd
 }
 
