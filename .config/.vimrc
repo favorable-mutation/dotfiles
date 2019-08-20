@@ -43,13 +43,16 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'junegunn/fzf.vim'
 
 " async lint
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 " run unit tests
 Plug 'janko-m/vim-test'
 
 " per directory vimrc
 Plug 'embear/vim-localvimrc'
+
+" [] shortcuts
+Plug 'tpope/vim-unimpaired'
 
 " end vim-plug call
 call plug#end()
@@ -117,7 +120,7 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-" format code with black automatically when writing a .py file
+" format code with black and isort automatically when writing a .py file
 augroup autoformat_settings
     autocmd BufWritePre *.py Autoformat
 augroup END
@@ -217,17 +220,16 @@ set fo+=t
 
 "------- Keybinds --------
 
-" map control o to toggle open/closed NERDTree
-nnoremap <C-o> :NERDTreeToggle<CR>
-
-" who needs tag stacks anyway? let's make it a terminal window
-nnoremap <C-t> :terminal<CR>
-
 " lead me into space
 let mapleader=" "
 
-" window management should be easier
+" map to toggle open/closed NERDTree
+nnoremap <Leader>o :NERDTreeToggle<CR>
 
+" terminal window
+nnoremap <Leader>t :terminal<CR>
+
+" window management should be easier
 nnoremap <Leader>h :winc h<CR>
 nnoremap <Leader>j :winc j<CR>
 nnoremap <Leader>k :winc k<CR>
@@ -248,14 +250,15 @@ nnoremap <Leader>+ :winc +<CR>
 nnoremap <Leader>\| :winc \|<CR>
 
 " on the lam w/ fugitive
-
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
-" getting real tired of pressing shift
+" enter should mean a newline, goddamnit
+nnoremap <CR> i<CR><ESC>
 
+" getting real tired of pressing shift
 nnoremap ; :
 inoremap 1 !
 inoremap 2 @
