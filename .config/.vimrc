@@ -1,60 +1,72 @@
-"------- Install Plugins --------
+"------- Plugins --------
 
-" use vim-plug to install plugins
 call plug#begin('~/.vim/plugged')
 
-" add colorschemes plugin
-Plug 'flazz/vim-colorschemes'
 
-" add emmet plugin for HTML expansions
-Plug 'mattn/emmet-vim'
+"------- Meta --------
 
-" add lightline plugin
-Plug 'itchyny/lightline.vim'
+" lint files asynchronously while editing
+Plug 'w0rp/ale'
 
-" add NERDTree plugin for project structure viewing
-Plug 'scrooloose/nerdtree'
+" read generalized config file across editors
+Plug 'editorconfig/editorconfig-vim'
 
-" add vim.surround plugin for better html tag editing
-Plug 'tpope/vim-surround'
-
-" add autoformatting plugin
-Plug 'Chiel92/vim-autoformat'
-
-" add tabular plugin
-Plug 'godlygeek/tabular'
-
-" add vim-markdown plugin
-Plug 'plasticboy/vim-markdown'
-
-" add the fugitive git integration plugin
+" git integration
 Plug 'tpope/vim-fugitive'
 
-" add lightline buffer list plugin
+" status bar
+Plug 'itchyny/lightline.vim'
+
+" tabs for status bar
 Plug 'mengelbrecht/lightline-bufferline'
 
-" script editing with fountain
-Plug 'vim-scripts/fountain.vim'
+" file structure viewer
+Plug 'scrooloose/nerdtree'
 
-" coffeescript support
+" documentation browser
+Plug 'rhysd/devdocs.vim'
+
+
+"------- Theming --------
+
+" ANSI colorscheme
+Plug 'jeffkreeftmeijer/vim-dim'
+
+"------- Language Support --------
+
+" syntax & indentation for CoffeeScript
 Plug 'kchmck/vim-coffee-script'
 
-" fuzzy search, uses Tags
-Plug 'junegunn/fzf.vim'
+" autoexpand HTML boilerplate
+Plug 'mattn/emmet-vim'
 
-" async lint
-"Plug 'w0rp/ale'
+" syntax for Fountain
+Plug 'vim-scripts/fountain.vim'
 
-" run unit tests
-Plug 'janko-m/vim-test'
+" syntax & indentation for Markdown
+Plug 'plasticboy/vim-markdown'
 
-" per directory vimrc
-Plug 'embear/vim-localvimrc'
+" syntax & indentation for Vue
+Plug 'leafOfTree/vim-vue-plugin'
 
-" [] shortcuts
+
+"------- Navigation --------
+
+" enclose things in parens or HTML tags
+Plug 'tpope/vim-surround'
+
+" extended bracket shortcuts
 Plug 'tpope/vim-unimpaired'
 
-" end vim-plug call
+"------- Not Configured -------
+
+" Plug 'junegunn/fzf.vim'
+" Plug 'godlygeek/tabular'
+" Plug 'Chiel92/vim-autoformat'
+" Plug 'janko-m/vim-test'
+" Plug 'embear/vim-localvimrc'
+
+
 call plug#end()
 
 
@@ -71,9 +83,6 @@ set showtabline=2
 
 " initialize lightline config
 let g:lightline = {}
-
-" set the lightline colorscheme
-let g:lightline.colorscheme = 'one'
 
 " add in lightline fugitive integration
 let g:lightline.active = {
@@ -112,18 +121,18 @@ let g:lightline.component_type = {
 runtime macros/matchit.vim
 
 " we don't like yapf or autopep8 :(
-let g:formatters_python = ['black']
+" let g:formatters_python = ['black']
 
 " turn off autoformat's use of vim's default formatting; black takes care of
 " all that anyway
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
+" let g:autoformat_autoindent = 0
+" let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
 
 " format code with black and isort automatically when writing a .py file
-augroup autoformat_settings
-    autocmd BufWritePre *.py Autoformat
-augroup END
+" augroup autoformat_settings
+"     autocmd BufWritePre *.py Autoformat
+" augroup END
 
 " get rid of folding in markdown files
 let g:vim_markdown_folding_disabled = 1
@@ -131,14 +140,60 @@ let g:vim_markdown_folding_disabled = 1
 " add shell = sh for code blocks
 let g:vim_markdown_fenced_languages = ['shell=sh']
 
+" load all syntax files in `runtimepath`
+let g:vim_vue_plugin_load_full_syntax = 1
+let g:vim_vue_plugin_use_sass = 1
+
+" define linters
+let g:ale_fixers = {
+            \ 'python': ['black', 'isort'],
+            \ 'javascript': ['eslint'],
+            \ }
+
+" 'vue': ['vls'],
+
+" eslint for Vue files
+" let g:ale_linter_aliases = {
+"             \ 'vue': ['javascript', 'vue']
+"             \ }
+
+" eslint can see Vue files now!
+" let g:ale_javascript_eslint_options = '--ext .js,.vue'
+
+" lint on save
+let g:ale_fix_on_save = 1
+
+" that popup is hella distracting, just leave it there
+let g:ale_sign_column_always = 1
+
+" fun error symbols
+let g:ale_sign_error = "!-"
+let g:ale_sign_warning = "?-"
+
+" search devdocs when in filetypes where `man`/vim docs are useless
+let ignored = ['bash', 'c', 'perl', 'sh', 'vim', 'zsh']
+augroup plugin-devdocs
+    if index(ignored, &filetype) < 0
+        autocmd!
+        autocmd FileType nmap <buffer>K <Plug>(devdocs-under-cursor)
+    endif
+augroup END
+
+" specify documentation specific to filetype
+"let g:devdocs_filetype_map = {
+"            \ 'python':
+"}
 
 "------- Visual Settings --------
 
 " set colorscheme from colorschemes plugin
-colorscheme base16-railscasts
+colorscheme dim
 
-" set background for snow theme to dark
+" set background for theme to dark
 set background=dark
+
+" set the lightline colorscheme
+let g:lightline.colorscheme = 'jellybeans'
 
 " syntax highlighting and auto filetype detection on
 syntax on filetype on filetype indent on filetype plugin on
@@ -188,9 +243,6 @@ set textwidth=99
 
 " this is from the kitty FAQ to avoid weird background color issues
 let &t_ut=''
-
-" differentiate cw and cW for variable names in python with underscores
-set iskeyword-=_
 
 " hide redundant filename on open
 set shortmess=F
@@ -254,6 +306,13 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
+
+" it's been a long day; I could use a good ALE
+nnoremap <Leader>af :ALEFix<CR>
+nnoremap <Leader>ag :ALEGoToDefinition<CR>
+nnoremap <Leader>a_ :ALE_<CR>
+nnoremap <Leader>a_ :ALE_<CR>
+nnoremap <Leader>a_ :ALE_<CR>
 
 " enter should mean a newline, goddamnit
 nnoremap <CR> i<CR><ESC>

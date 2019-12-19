@@ -31,11 +31,15 @@ export LANG="en_US.UTF-8"
 
 # custom config ------------------------------------------------ #
 
-# explicitly set $PATH every time zsh is opened, including brew bin and sbin paths
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+# go is needy
+export GOPATH="$HOME/go"
+export GOROOT="/usr/local/opt/go/libexec"
 
-# make vim the default shell editor
-export EDITOR="/usr/local/bin/vim"
+# explicitly set $PATH every time zsh is opened, including brew bin and sbin paths
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$GOPATH/bin:$GOROOT/bin:"
+
+# make neovim the default shell editor
+export EDITOR="/usr/local/bin/nvim"
 
 # and make less the default shell pager
 export PAGER=less
@@ -49,17 +53,19 @@ export KEYTIMEOUT=1
 # easy configuration of zsh
 alias zshrc="${EDITOR:-vi} ~/etc/.config/.zshrc"
 
-# easy configuration of vim 
-alias vimrc="${EDITOR:-vi} ~/etc/.config/.vimrc"
+# easy configuration of vim
+vimrc() {
+  cd ~/.config/nvim
+  ${EDITOR:-vi} ./general.vim
+  cd -
+}
 
 # easy configuration of xpdf
 alias xpdfrc="${EDITOR:-vi} ~/etc/.config/.xpdfrc"
 
 # get out of the way, old-timer
-alias vi="vim"
-
-# open files in the current MacVim window using the mvim command
-alias mvim='open -a MacVim '
+alias vi="nvim "
+alias vim="nvim "
 
 # stop thinking about python 2
 alias python="python3"
@@ -70,11 +76,17 @@ alias pip="pip3"
 # easy reload of zsh
 alias rezsh="source ~/.zshrc"
 
+# don't guess branch names that are just on remote
+# for autocompletion of `git checkout`
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
 # easy cd'ing to the root of the current git project
 alias root='cd "`git rev-parse --show-toplevel`"'
 
 # easy editing of the .gitignore file for this git project
-alias gitig='vim "`git rev-parse --show-toplevel`"/.gitignore'
+gitig() {
+  "${EDITOR:-vi} `git rev-parse --show-toplevel`/.gitignore"
+}
 
 # show files accidentally written during git merge for downstream use
 # e.g. `mergestat | cleanup`
@@ -85,6 +97,9 @@ alias cleanup="xargs rm"
 
 # quick interface to interactive git add
 alias gadd='git add -i'
+
+# sometimes you have to move fast
+alias gasp="git add . && git commit --amend && git push -u origin HEAD"
 
 # easy python linting with typical docker-compose setup
 alias lint='docker-compose run test bash -c "black . && isort -rc . && flake8"'
