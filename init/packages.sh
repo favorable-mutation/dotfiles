@@ -2,28 +2,36 @@
 
 # TODO add install and setup for pecan, change color
 # TODO chunkwm and skhd cert signing step
+# TODO abstract logging and printing to functions
 
-# update
+# Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Update
 printf "\n\n### brew update ###\n\n" > ~/brew.log > ~/brew.err
 brew update 1>>~/brew.log 2>>~/brew.err
 
-# upgrade
+# Upgrade
 printf "\n\n### brew upgrade ###\n\n" >> ~/brew.log >> ~/brew.err
 brew upgrade 1>>~/brew.log 2>>~/brew.err
 
-# install window manager components
-# fix switching workspaces as per issue #571 on chunkwm github
-printf "\n\n### chunkwm ###\n\n" >> ~/brew.log >> ~/brew.err
+# Oh My Zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Spaceship theme
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+# Install window manager components
+printf "\n\n### skhd & yabai ###\n\n" >> ~/brew.log >> ~/brew.err
+brew install skhd 1>>~/brew.log 2>>~/brew.err
+brew services start skhd
 brew tap koekeishiya/formulae
 brew install --HEAD chunkwm 1>>~/brew.log 2>>~/brew.err
 sudo chunkwm --uninstall-sa
 pkill Dock
 sudo chunkwm --install-sa
 brew services start chunkwm
-
-# install skhd
-brew install skhd 1>>~/brew.log 2>>~/brew.err
-brew services start skhd
 
 # languages
 printf "\n\n### languages ###\n\n" >> ~/brew.log >> ~/brew.err
@@ -61,13 +69,6 @@ brew install cowsay 1>>~/brew.log 2>>~/brew.err
 brew install fortune 1>>~/brew.log 2>>~/brew.err
 brew install neofetch 1>>~/brew.log 2>>~/brew.err
 brew install pipes-sh 1>>~/brew.log 2>>~/brew.err
-
-# TODO
-# irssi
-# mongodb
-# mutt
-# mysql/psql
-# docker
 
 # casks
 printf "\n\n### casks ###\n\n" >> ~/brew.log >> ~/brew.err

@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# TODO move config files to separate repo to clone via script
+# TODO setup GitHub SSH key thru API?
+
 # link all of the home dir config files in from the ~/etc/.config folder
 for file in `ls -a ~/etc/.config/ | awk '/^\.[a-z]+/'`
 do

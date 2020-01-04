@@ -1,0 +1,10 @@
+calibre
+discord
+firefox
+font-hack
+franz
+kitty
+qlab
+spotify
+ubersicht
+zotero
