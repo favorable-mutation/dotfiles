@@ -11,6 +11,11 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="spaceship"
+SPACESHIP_GIT_SYMBOL="🌱 "
+SPACESHIP_DOCKER_CONTEXT_PREFIX=""
+SPACESHIP_DOCKER_CONTEXT_SUFFIX=""
+SPACESHIP_VI_MODE_INSERT="[📝]"
+SPACESHIP_VI_MODE_NORMAL="[🔒]"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -21,6 +26,7 @@ plugins=(
   git
   docker
   docker-compose
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -66,6 +72,7 @@ alias xpdfrc="${EDITOR:-vi} ~/etc/.config/.xpdfrc"
 # get out of the way, old-timer
 alias vi="nvim "
 alias vim="nvim "
+alias vimdiff="nvim -d "
 
 # stop thinking about python 2
 alias python="python3"
@@ -148,6 +155,14 @@ gwrap() {
 
 # make it only autocomplete with wrap files
 compctl -g "*.wrap" gwrap
+
+# try out different themes for kitty
+chtheme() {
+    KITTY_PATH=~/.config/kitty
+    THEME_PATH=$KITTY_PATH/theme.conf
+    THEMES_PATH=$KITTY_PATH/kitty-themes/themes
+    ln -s $THEMES_PATH/$1.conf $THEME_PATH
+}
 
 # make dot-file a shell command for easier dotfile repo inclusion of config files that live in ~/
 dot-file() {

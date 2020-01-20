@@ -18,14 +18,14 @@ rm ~/.config/kitty/kitty.conf
 ln -s ~/etc/.config/kitty.conf ~/.config/kitty/
 
 # setup global gitignore
-if ! [ -s ~/.gitconfig ]
-then
-    printf "excludesfile = ~/.gitignore_global\nautocrlf = input" >> ~/.gitconfig
-fi
+# if ! [ -s ~/.gitconfig ]
+# then
+#     printf "excludesfile = ~/.gitignore_global\nautocrlf = input" >> ~/.gitconfig
+# fi
 
 # set user's shell to zsh
-printf "Please enter your sudo password to set your shell to zsh\n"
-sudo chsh -s /usr/local/bin/zsh `whoami`
+# printf "Please enter your sudo password to set your shell to zsh\n"
+# sudo chsh -s /usr/local/bin/zsh `whoami`
 
 # reload shell with config
 source ~/.zshrc

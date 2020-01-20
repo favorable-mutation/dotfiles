@@ -238,8 +238,8 @@ set number
 " display a confirmation message when yanking or deleting any number of lines
 set report=0
 
-" set maximum line length to 99 characters
-set textwidth=99
+" set maximum line length to 80 characters
+set textwidth=80
 
 " this is from the kitty FAQ to avoid weird background color issues
 let &t_ut=''
