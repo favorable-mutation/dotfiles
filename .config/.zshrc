@@ -1,21 +1,22 @@
 # stock oh-my-zsh and plugin config ---------------------------- #
 
 # automatically put here by thefuck
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/$USER/.oh-my-zsh"
+# export ZSH="/Users/$USER/.oh-my-zsh"
+export ZSH="/home/favmutation/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="spaceship"
-SPACESHIP_GIT_SYMBOL="🌱 "
+SPACESHIP_GIT_SYMBOL="⎬"
 SPACESHIP_DOCKER_CONTEXT_PREFIX=""
 SPACESHIP_DOCKER_CONTEXT_SUFFIX=""
-# SPACESHIP_VI_MODE_INSERT="[📝]"
-# SPACESHIP_VI_MODE_NORMAL="[🔒]"
+SPACESHIP_VI_MODE_INSERT="[I]"
+SPACESHIP_VI_MODE_NORMAL="[N]"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -34,6 +35,8 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG="en_US.UTF-8"
 
+export KITTY_CONFIG_DIRECTORY=~/.config/kitty
+
 
 # custom config ------------------------------------------------ #
 
@@ -45,7 +48,7 @@ export GOROOT="/usr/local/opt/go/libexec"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$GOPATH/bin:$GOROOT/bin:"
 
 # make neovim the default shell editor
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 
 # and make less the default shell pager
 export PAGER=less
@@ -188,4 +191,4 @@ update() {
 }
 
 # keep brew updated by running updates on shell init
-update > ~/.brew.log 2>&1 &
+# update > ~/.brew.log 2>&1 &
