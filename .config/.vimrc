@@ -34,20 +34,17 @@ Plug 'jeffkreeftmeijer/vim-dim'
 
 "------- Language Support --------
 
-" syntax & indentation for CoffeeScript
-Plug 'kchmck/vim-coffee-script'
-
 " autoexpand HTML boilerplate
 Plug 'mattn/emmet-vim'
 
 " syntax for Fountain
 Plug 'vim-scripts/fountain.vim'
 
-" syntax & indentation for Markdown
-Plug 'plasticboy/vim-markdown'
+" general syntax
+Plug 'sheerun/vim-polyglot'
 
 " syntax & indentation for Vue
-Plug 'leafOfTree/vim-vue-plugin'
+" Plug 'leafOfTree/vim-vue-plugin'
 
 
 "------- Navigation --------

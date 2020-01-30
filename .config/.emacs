@@ -102,7 +102,7 @@
     (add-to-list 'default-frame-alist (cons 'width 50))
     (add-to-list 'default-frame-alist (cons 'height 50))))
 
-(set-frame-size)	
+(set-frame-size)
 
 ;; smooth resize
 (setq frame-resize-pixelwise t)

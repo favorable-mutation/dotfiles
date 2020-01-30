@@ -14,8 +14,8 @@ ZSH_THEME="spaceship"
 SPACESHIP_GIT_SYMBOL="🌱 "
 SPACESHIP_DOCKER_CONTEXT_PREFIX=""
 SPACESHIP_DOCKER_CONTEXT_SUFFIX=""
-SPACESHIP_VI_MODE_INSERT="[📝]"
-SPACESHIP_VI_MODE_NORMAL="[🔒]"
+# SPACESHIP_VI_MODE_INSERT="[📝]"
+# SPACESHIP_VI_MODE_NORMAL="[🔒]"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
