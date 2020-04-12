@@ -245,7 +245,7 @@ let &t_ut=''
 set shortmess=F
 
 " .env* files should generally have sh syntax
-autocmd BufNewFile,BufRead *env* set syntax=sh
+" autocmd BufNewFile,BufRead *env* set syntax=sh
 
 
 "------- Editor Behavior --------
@@ -274,6 +274,9 @@ let mapleader=" "
 
 " map to toggle open/closed NERDTree
 nnoremap <Leader>o :NERDTreeToggle<CR>
+
+" make him just a *bit* smaller
+let g:NERDTreeWinSize=24
 
 " terminal window
 nnoremap <Leader>t :terminal<CR>

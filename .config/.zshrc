@@ -37,6 +37,11 @@ export LANG="en_US.UTF-8"
 
 # custom config ------------------------------------------------ #
 
+function td {
+  mkdir -p $1
+  cd $1
+}
+
 # go is needy
 export GOPATH="$HOME/go"
 export GOROOT="/usr/local/opt/go/libexec"
