@@ -1,10 +1,10 @@
 # stock oh-my-zsh and plugin config ---------------------------- #
 
 # automatically put here by thefuck
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/$USER/.oh-my-zsh"
+export ZSH="/home/favmutation/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -185,12 +185,12 @@ dot() {
     cd -
 }
 
-# run brew update, upgrade, and cask upgrade
+# run apt update, upgrade
 update() {
-    brew update
-    brew upgrade
-    brew cask upgrade
+    sudo apt-get update && apt-get upgrade
 }
 
-# keep brew updated by running updates on shell init
-update > ~/.brew.log 2>&1 &
+# keep apt updated by running updates on shell init
+# update > ~/.apt.log 2>&1 &
+
+cd ~
