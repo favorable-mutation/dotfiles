@@ -49,6 +49,9 @@ export GOROOT="/usr/local/opt/go/libexec"
 # explicitly set $PATH every time zsh is opened, including brew bin and sbin paths
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$GOPATH/bin:$GOROOT/bin:"
 
+# find that IntelliJ executable
+export PATH=$PATH:/usr/local/bin/idea/bin
+
 # make neovim the default shell editor
 export EDITOR="/usr/bin/nvim"
 
@@ -75,7 +78,8 @@ vimrc() {
 alias xpdfrc="${EDITOR:-vi} ~/etc/.config/.xpdfrc"
 
 # get out of the way, old-timer
-alias vi="nvim "
+alias v="vi "
+alias vi="vim "
 alias vim="nvim "
 alias vimdiff="nvim -d "
 
@@ -91,6 +95,12 @@ alias rezsh="source ~/.zshrc"
 # don't guess branch names that are just on remote
 # for autocompletion of `git checkout`
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
+# this is important for some reason
+export HOSTNAME="localhost"
+
+# where is the big boi
+export RADIX_MONOREPO_DIR="/home/$USER/monorepo/"
 
 # easy cd'ing to the root of the current git project
 alias root='cd "`git rev-parse --show-toplevel`"'
@@ -133,6 +143,9 @@ alias py-env="source ./bin/activate"
 
 # easy backgrounded serving of mongodb
 alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"
+
+# bazel dependency regeneration
+alias mkbazeldeps="bazel run //:parse generate -- --repo-root /home/$USER/radix/monorepo --sha-file 3rdparty/workspace.bzl --deps dependencies.yaml"
 
 # restart chunkwm and skhd
 rewm() {
