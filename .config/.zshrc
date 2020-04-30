@@ -4,7 +4,7 @@
 # eval $(thefuck --alias)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/favmutation/.oh-my-zsh"
+export ZSH="/home/griffin/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -50,7 +50,7 @@ export GOROOT="/usr/local/opt/go/libexec"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$GOPATH/bin:$GOROOT/bin:"
 
 # make neovim the default shell editor
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 
 # and make less the default shell pager
 export PAGER=less
