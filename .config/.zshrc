@@ -4,7 +4,7 @@
 # eval $(thefuck --alias)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/griffin/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -42,15 +42,17 @@ function td {
   cd $1
 }
 
-# go is needy
-export GOPATH="$HOME/go"
-export GOROOT="/usr/local/opt/go/libexec"
+# look for executables in sbin paths
+export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 
-# explicitly set $PATH every time zsh is opened, including brew bin and sbin paths
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$GOPATH/bin:$GOROOT/bin:"
+# X11 executables, in case you want to see anything
+export PATH=$PATH:/opt/X11/bin
 
 # find that IntelliJ executable
 export PATH=$PATH:/usr/local/bin/idea/bin
+
+# qmk is in a weird spot
+export PATH=$PATH:$HOME/.local/bin
 
 # make neovim the default shell editor
 export EDITOR="/usr/bin/nvim"
@@ -100,7 +102,7 @@ export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 export HOSTNAME="localhost"
 
 # where is the big boi
-export RADIX_MONOREPO_DIR="/home/$USER/monorepo/"
+export RADIX_MONOREPO_DIR="$HOME/monorepo/"
 
 # easy cd'ing to the root of the current git project
 alias root='cd "`git rev-parse --show-toplevel`"'
@@ -145,7 +147,7 @@ alias py-env="source ./bin/activate"
 alias mongo.serve="mongod --auth --config /usr/local/etc/mongod.conf &"
 
 # bazel dependency regeneration
-alias mkbazeldeps="bazel run //:parse generate -- --repo-root /home/$USER/radix/monorepo --sha-file 3rdparty/workspace.bzl --deps dependencies.yaml"
+alias mkbazeldeps="bazel run //:parse generate -- --repo-root $HOME/radix/monorepo --sha-file 3rdparty/workspace.bzl --deps dependencies.yaml"
 
 # restart chunkwm and skhd
 rewm() {
@@ -199,9 +201,7 @@ dot() {
 }
 
 # run apt update, upgrade
-update() {
-    sudo apt-get update && apt-get upgrade
-}
+alias update="sudo apt-get update && sudo apt-get upgrade"
 
 # keep apt updated by running updates on shell init
 # update > ~/.apt.log 2>&1 &

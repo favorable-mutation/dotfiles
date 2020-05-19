@@ -195,6 +195,11 @@ let g:lightline.colorscheme = 'jellybeans'
 " syntax highlighting and auto filetype detection on
 syntax on filetype on filetype indent on filetype plugin on
 
+" ale highlight colors (need to be after colorscheme loads, incl. after
+" 'syntax on')
+highlight SpellBad ctermbg=DarkGrey
+highlight SpellCap ctermbg=DarkGrey
+
 " fun gui options for macvim
 if has('gui_running')
 
@@ -309,10 +314,10 @@ nnoremap <Leader>gp :Gpush<CR>
 
 " it's been a long day; I could use a good ALE
 nnoremap <Leader>af :ALEFix<CR>
+nnoremap <Leader>at :ALEToggle<CR>
 nnoremap <Leader>ag :ALEGoToDefinition<CR>
-nnoremap <Leader>a_ :ALE_<CR>
-nnoremap <Leader>a_ :ALE_<CR>
-nnoremap <Leader>a_ :ALE_<CR>
+nnoremap <Leader>an :ALENext<CR>
+nnoremap <Leader>ap :ALEPrevious<CR>
 
 " enter should mean a newline, goddamnit
 nnoremap <CR> i<CR><ESC>
