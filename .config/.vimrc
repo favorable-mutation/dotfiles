@@ -55,6 +55,14 @@ Plug 'tpope/vim-surround'
 " extended bracket shortcuts
 Plug 'tpope/vim-unimpaired'
 
+" gr-ip it and rip it (and replace with contents of register)
+Plug 'vim-scripts/ReplaceWithRegister'
+
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+
+
 "------- Not Configured -------
 
 " Plug 'junegunn/fzf.vim'
@@ -143,8 +151,10 @@ let g:vim_vue_plugin_use_sass = 1
 
 " define linters
 let g:ale_fixers = {
+            \ 'html': ['prettier', 'eslint'],
+            \ 'javascript': ['prettier', 'eslint'],
             \ 'python': ['black', 'isort'],
-            \ 'javascript': ['eslint'],
+            \ 'vue': ['prettier', 'eslint'],
             \ }
 
 " 'vue': ['vls'],
@@ -266,7 +276,7 @@ set autoread
 set ignorecase
 
 " allow yank and delete to use the system clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " auto-wrap based on text width
 set fo+=t
@@ -324,28 +334,7 @@ nnoremap <CR> i<CR><ESC>
 
 " getting real tired of pressing shift
 nnoremap ; :
-inoremap 1 !
-inoremap 2 @
-inoremap 3 #
-inoremap 4 $
-inoremap 5 %
-inoremap 6 ^
-inoremap 7 &
-inoremap 8 *
-inoremap 9 (
-inoremap 0 )
-
 nnoremap : ;
-inoremap ! 1
-inoremap @ 2
-inoremap # 3
-inoremap $ 4
-inoremap % 5
-inoremap ^ 6
-inoremap & 7
-inoremap * 8
-inoremap ( 9
-inoremap ) 0
 
 " pls get me tf out of this built-in terminal
 nnoremap <C-e> a

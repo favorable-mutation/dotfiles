@@ -37,6 +37,9 @@ export LANG="en_US.UTF-8"
 
 # custom config ------------------------------------------------ #
 
+# ghcup-env
+[ -f "/home/griffin/.ghcup/env" ] && source "/home/griffin/.ghcup/env"
+
 function td {
   mkdir -p $1
   cd $1
@@ -53,6 +56,10 @@ export PATH=$PATH:/usr/local/bin/idea/bin
 
 # qmk is in a weird spot
 export PATH=$PATH:$HOME/.local/bin
+
+# let's gooooooooo
+export PATH=$PATH:$HOME/go/bin
+export GO111MODULE=on
 
 # make neovim the default shell editor
 export EDITOR="/usr/bin/nvim"
@@ -102,15 +109,18 @@ export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 export HOSTNAME="localhost"
 
 # where is the big boi
-export RADIX_MONOREPO_DIR="$HOME/monorepo/"
+export MONOREPO="$HOME/radix/monorepo/"
+
+# neovim can't find its own config
+export XDG_CONFIG_HOME="$HOME/.config"
+
 
 # easy cd'ing to the root of the current git project
 alias root='cd "`git rev-parse --show-toplevel`"'
 
 # easy editing of the .gitignore file for this git project
-gitig() {
-  "${EDITOR:-vi} `git rev-parse --show-toplevel`/.gitignore"
-}
+alias gitig='${EDITOR:-vi} "`git rev-parse --show-toplevel`/.gitignore"'
+
 
 # show files accidentally written during git merge for downstream use
 # e.g. `mergestat | cleanup`
@@ -201,7 +211,10 @@ dot() {
 }
 
 # run apt update, upgrade
-alias update="sudo apt-get update && sudo apt-get upgrade"
+# alias update="sudo apt-get update && sudo apt-get upgrade"
+
+# IntelliJ installs faster without compression
+alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
 
 # keep apt updated by running updates on shell init
 # update > ~/.apt.log 2>&1 &
