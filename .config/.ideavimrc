@@ -23,3 +23,7 @@ set ReplaceWithRegister
 
 " fuck it https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
 set ideajoin
+
+" plz help me idk what's capitalized
+set ignorecase
+set smartcase

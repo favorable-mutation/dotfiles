@@ -110,6 +110,8 @@ export HOSTNAME="localhost"
 
 # where is the big boi
 export MONOREPO="$HOME/radix/monorepo/"
+export HOSTNAME="localhost"
+export RADIX_MONOREPO_DIR="$HOME/radix/monorepo/"
 
 # neovim can't find its own config
 export XDG_CONFIG_HOME="$HOME/.config"
