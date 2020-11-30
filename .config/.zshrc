@@ -79,7 +79,7 @@ alias zshrc="${EDITOR:-vi} ~/etc/.config/.zshrc"
 # easy configuration of vim
 vimrc() {
   cd ~/.config/nvim
-  ${EDITOR:-vi} ./general.vim
+  ${EDITOR:-vi} ./init.vim
   cd -
 }
 
@@ -211,6 +211,25 @@ dot() {
     git push origin master
     cd -
 }
+
+# configure and spin up a vault instance that will accept requests from any
+# origin and allow username/password authentication
+vault-dev() {
+    vault server -dev -dev-root-token-id="root" &
+    sleep 5
+    export VAULT_ADDR="http://127.0.0.1:8200"
+    vault auth enable userpass
+    vault write auth/userpass/users/local \
+        password=test \
+        policies=default
+    curl -X POST \
+        "http://localhost:8200/v1/sys/config/cors" \
+        -H  "accept: */*" -H  "Content-Type: application/json" \
+        -H  "X-Vault-Token: root" \
+        -d "{\"allowed_origins\":[\"*\"],\"enable\":true}"
+}
+
+alias dev="cd $MONOREPO/interface/scalajs && rm -r target && sbt clean cleanFiles dev"
 
 # run apt update, upgrade
 # alias update="sudo apt-get update && sudo apt-get upgrade"
