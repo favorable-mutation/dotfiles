@@ -240,4 +240,7 @@ alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
 # keep apt updated by running updates on shell init
 # update > ~/.apt.log 2>&1 &
 
+# https for create-react-app devserver
+export HTTPS=true
+
 cd ~
