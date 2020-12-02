@@ -229,7 +229,7 @@ vault-dev() {
         -d "{\"allowed_origins\":[\"*\"],\"enable\":true}"
 }
 
-alias dev="cd $MONOREPO/interface/scalajs && rm -r target && sbt clean cleanFiles dev"
+alias dev="cd $MONOREPO/interface/scalajs && rm -r target && vault-dev && sbt clean cleanFiles dev"
 
 # run apt update, upgrade
 # alias update="sudo apt-get update && sudo apt-get upgrade"
