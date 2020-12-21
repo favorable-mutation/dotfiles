@@ -61,6 +61,9 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export GO111MODULE=on
 
+# yarn global install location
+export PATH=$PATH:$HOME/.yarn/bin
+
 # make neovim the default shell editor
 export EDITOR="/usr/bin/nvim"
 
@@ -236,6 +239,9 @@ alias dev="cd $MONOREPO/interface/scalajs && rm -r target && vault-dev && sbt cl
 
 # IntelliJ installs faster without compression
 alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # keep apt updated by running updates on shell init
 # update > ~/.apt.log 2>&1 &
