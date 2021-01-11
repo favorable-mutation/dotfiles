@@ -215,15 +215,17 @@ dot() {
 # configure and spin up a vault instance that will accept requests from any
 # origin and allow username/password authentication
 vault-dev() {
-    vault server -dev -dev-root-token-id="root" &
+    sudo nginx -s quit || true
+    sudo nginx -c ~/nginx_custom.conf
+    export VAULT_ADDR="http://localhost:8300"
+    vault server -dev -dev-root-token-id="root" -dev-listen-address="localhost:8300" &
     sleep 5
-    export VAULT_ADDR="http://127.0.0.1:8200"
     vault auth enable userpass
     vault write auth/userpass/users/local \
         password=test \
         policies=default
-    curl -X POST \
-        "http://localhost:8200/v1/sys/config/cors" \
+    curl -k -X POST \
+        "https://localhost:8200/v1/sys/config/cors" \
         -H  "accept: */*" -H  "Content-Type: application/json" \
         -H  "X-Vault-Token: root" \
         -d "{\"allowed_origins\":[\"*\"],\"enable\":true}"

@@ -2,11 +2,8 @@
 
 call plug#begin('~/.vim/plugged')
 
-" lint files asynchronously while editing
-" Plug 'w0rp/ale'
-
 " read generalized config file across editors
-" Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " git integration
 Plug 'tpope/vim-fugitive'
@@ -20,17 +17,8 @@ Plug 'mengelbrecht/lightline-bufferline'
 " file structure viewer
 Plug 'scrooloose/nerdtree'
 
-" documentation browser
-" Plug 'rhysd/devdocs.vim'
-
 " ANSI colorscheme
 Plug 'jeffkreeftmeijer/vim-dim'
-
-" autoexpand HTML boilerplate
-" Plug 'mattn/emmet-vim'
-
-" syntax for Fountain
-" Plug 'vim-scripts/fountain.vim'
 
 " general syntax
 Plug 'sheerun/vim-polyglot'
@@ -61,11 +49,6 @@ set noshowmode
 " show the tabline always
 set showtabline=2
 
-" show coc status in lightline
-" function! CocCurrentFunction()
-"     return get(b:, 'coc_current_function', '')
-" endfunction
-
 " initialize lightline config
 let g:lightline = {}
 
@@ -76,14 +59,11 @@ let g:lightline.active = {
             \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
             \ }
 
-" \ 'cocstatus': 'coc#status',
-" \ 'currentfunction': 'CocCurrentFunction'
 let g:lightline.component_function = {
             \ 'gitbranch': 'fugitive#head',
             \ }
 
 " add in buffer list with plugin's 'default' config
-
 let g:lightline#bufferline#show_number = 1
 
 let g:lightline#bufferline#shorten_path = 0
@@ -108,20 +88,6 @@ let g:lightline.component_type = {
 " activate builtin macro for jumping between html open/close tags
 runtime macros/matchit.vim
 
-" we don't like yapf or autopep8 :(
-" let g:formatters_python = ['black']
-
-" turn off autoformat's use of vim's default formatting; black takes care of
-" all that anyway
-" let g:autoformat_autoindent = 0
-" let g:autoformat_retab = 0
-" let g:autoformat_remove_trailing_spaces = 0
-
-" format code with black and isort automatically when writing a .py file
-" augroup autoformat_settings
-"     autocmd BufWritePre *.py Autoformat
-" augroup END
-
 " get rid of folding in markdown files
 let g:vim_markdown_folding_disabled = 1
 
@@ -131,48 +97,6 @@ let g:vim_markdown_fenced_languages = ['shell=sh']
 " load all syntax files in `runtimepath`
 let g:vim_vue_plugin_load_full_syntax = 1
 let g:vim_vue_plugin_use_sass = 1
-
-" define linters
-" let g:ale_fixers = {
-"             \ 'html': ['prettier', 'eslint'],
-"             \ 'javascript': ['prettier', 'eslint'],
-"             \ 'python': ['black', 'isort'],
-"             \ 'vue': ['prettier', 'eslint'],
-"             \ }
-
-" 'vue': ['vls'],
-
-" eslint for Vue files
-" let g:ale_linter_aliases = {
-"             \ 'vue': ['javascript', 'vue']
-"             \ }
-
-" eslint can see Vue files now!
-" let g:ale_javascript_eslint_options = '--ext .js,.vue'
-
-" lint on save
-" let g:ale_fix_on_save = 1
-
-" that popup is hella distracting, just leave it there
-" let g:ale_sign_column_always = 1
-
-" fun error symbols
-" let g:ale_sign_error = "!-"
-" let g:ale_sign_warning = "?-"
-
-" search devdocs when in filetypes where `man`/vim docs are useless
-" let ignored = ['bash', 'c', 'perl', 'sh', 'vim', 'zsh']
-" augroup plugin-devdocs
-"     if index(ignored, &filetype) < 0
-"         autocmd!
-"         autocmd FileType nmap <buffer>K <Plug>(devdocs-under-cursor)
-"     endif
-" augroup END
-
-" specify documentation specific to filetype
-"let g:devdocs_filetype_map = {
-"            \ 'python':
-"}
 
 
 "------- Visual Settings --------
@@ -189,41 +113,9 @@ let g:lightline.colorscheme = 'jellybeans'
 " syntax highlighting and auto filetype detection on
 syntax on filetype on filetype indent on filetype plugin on
 
-" ale highlight colors (need to be after colorscheme loads, incl. after
-" 'syntax on')
-" highlight SpellBad ctermbg=DarkGrey
-" highlight SpellCap ctermbg=DarkGrey
-
-" fun gui options for macvim
-" if has('gui_running')
-
-    " macvim font shenanigans
-"     set guifont=Hack:h16
-
-    " get rid of those gui tabs (macvim)
-"     set guioptions-=e
-
-    " macvim color shenanigans
-"     let g:terminal_ansi_colors = [
-"                 \ "#2b2b2b",
-"                 \ "#da4939",
-"                 \ "#a5c261",
-"                 \ "#ffc66d",
-"                 \ "#6d9cbe",
-"                 \ "#b6b3eb",
-"                 \ "#519f50",
-"                 \ "#e6e1dc",
-"                 \ "#5a647e",
-"                 \ "#da4939",
-"                 \ "#a5c261",
-"                 \ "#ffc66d",
-"                 \ "#6d9cbe",
-"                 \ "#b6b3eb",
-"                 \ "#519f50",
-"                 \ "#f9f7f3"
-"                 \ ]
-
-" endif
+" scan from the top of the file for syntax highlighting to avoid issues with
+" large files
+syntax sync fromstart
 
 " no search highlighting, plz
 set nohlsearch
@@ -234,9 +126,6 @@ set number
 " display a confirmation message when yanking or deleting any number of lines
 set report=0
 
-" set maximum line length to 80 characters
-" set textwidth=80
-
 " this is from the kitty FAQ to avoid weird background color issues
 let &t_ut=''
 
@@ -244,7 +133,7 @@ let &t_ut=''
 set shortmess+=F
 
 " .env* files should generally have sh syntax
-" autocmd BufNewFile,BufRead *env* set syntax=sh
+autocmd BufNewFile,BufRead *env* set syntax=sh
 
 " sometimes, _ separates words
 autocmd BufNewFile,BufRead *.py setlocal iskeyword-=_
@@ -272,9 +161,6 @@ set fo+=t
 
 "------- Keybinds --------
 
-" useful devdocs
-" nmap K <Plug>(devdocs-under-cursor)
-
 " lead me into space
 let mapleader=" "
 
@@ -283,9 +169,6 @@ nnoremap <Leader>o :NERDTreeToggle<CR>
 
 " make him just a *bit* smaller
 let g:NERDTreeWinSize=20
-
-" terminal window
-" nnoremap <Leader>t :terminal<CR>
 
 " window management should be easier
 nnoremap <Leader>wh :winc h<CR>
@@ -313,13 +196,6 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
-" it's been a long day; I could use a good ALE
-" nnoremap <Leader>af :ALEFix<CR>
-" nnoremap <Leader>at :ALEToggle<CR>
-" nnoremap <Leader>ag :ALEGoToDefinition<CR>
-" nnoremap <Leader>an :ALENext<CR>
-" nnoremap <Leader>ap :ALEPrevious<CR>
-
 " enter should mean a newline, goddamnit
 nnoremap <CR> i<CR><ESC>
 
@@ -327,17 +203,21 @@ nnoremap <CR> i<CR><ESC>
 nnoremap ; :
 nnoremap : ;
 
-" pls get me tf out of this built-in terminal
-" nnoremap <C-e> a
-" tnoremap <C-e> <C-\><C-n>
-
 
 "------- Custom Commands --------
 
 " define a command to allow auto-alphabetizing of CSS properties
 command! -bar SortCSS g#\({\n\)\@<=#.,/}/sort
 
-"------------------ Configuration for coc.nvim
+
+"------- Configuration for coc.nvim
+
+" coc managed extensions
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-prettier',
+  \ 'coc-eslint'
+  \ ]
 
 " highlight comments in jsonc files
 autocmd FileType json syntax match Comment +\/\/.\+$+
