@@ -126,6 +126,7 @@ let g:ale_fixers = {
       \   'html': ['prettier', 'eslint'],
       \   'javascript': ['prettier', 'eslint'],
       \   'python': ['black', 'isort'],
+      \   'typescript': ['prettier', 'eslint'],
       \   'vue': ['prettier', 'eslint'],
       \ }
 
