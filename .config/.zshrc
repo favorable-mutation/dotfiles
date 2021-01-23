@@ -243,6 +243,9 @@ alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Set display for x server
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+
 # keep apt updated by running updates on shell init
 # update > ~/.apt.log 2>&1 &
 
