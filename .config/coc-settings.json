@@ -1,0 +1,30 @@
+{
+ "coc.preferences.formatOnSaveFiletypes": [
+    "scala",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+ ],
+ "eslint.autoFixOnSave": true,
+ "eslint.filetypes": [
+   "javascript",
+   "javascriptreact",
+   "typescript",
+   "typescriptreact"
+ ],
+ "prettier.disableSuccessMessage": true,
+ "languageserver": {
+   "racket": {
+     "command": "racket",
+     "args": [
+       "--lib",
+       "racket-langserver"
+     ],
+     "filetypes": [
+       "scheme"
+     ]
+   }
+ }
+ // "metals.statusBarEnabled": true
+}

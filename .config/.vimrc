@@ -184,6 +184,8 @@ nnoremap <Leader>wL :winc L<CR>
 nnoremap <Leader>ws :winc s<CR>
 nnoremap <Leader>wv :winc v<CR>
 
+nnoremap <Leader>wp :winc p<CR>
+
 nnoremap <Leader>w- :winc -<CR>
 nnoremap <Leader>w_ :winc _<CR>
 nnoremap <Leader>w= :winc =<CR>

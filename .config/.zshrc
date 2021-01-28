@@ -105,24 +105,23 @@ alias rezsh="source ~/.zshrc"
 # for autocompletion of `git checkout`
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
-# this is important for some reason
-export HOSTNAME="localhost"
-
-# where is the big boi
+# radix stuff
 export MONOREPO="$HOME/radix/monorepo/"
+export RADIX_MONOREPO_DIR="$MONOREPO"
 export HOSTNAME="localhost"
-export RADIX_MONOREPO_DIR="$HOME/radix/monorepo/"
+export INTERNAL_HOSTNAME="localhost"
+export INTERNAL_PORT=8080
+export TCP_AKKA_PORT=8080
+export PATH=$PATH:/opt/radix/timberland/exec
 
 # neovim can't find its own config
 export XDG_CONFIG_HOME="$HOME/.config"
-
 
 # easy cd'ing to the root of the current git project
 alias root='cd "`git rev-parse --show-toplevel`"'
 
 # easy editing of the .gitignore file for this git project
 alias gitig='${EDITOR:-vi} "`git rev-parse --show-toplevel`/.gitignore"'
-
 
 # show files accidentally written during git merge for downstream use
 # e.g. `mergestat | cleanup`
@@ -219,11 +218,16 @@ vault-dev() {
     sudo nginx -c ~/nginx_custom.conf
     export VAULT_ADDR="http://localhost:8300"
     vault server -dev -dev-root-token-id="root" -dev-listen-address="localhost:8300" &
-    sleep 5
+    sleep 4
     vault auth enable userpass
+    vault auth enable okta
     vault write auth/userpass/users/local \
         password=test \
         policies=default
+    vault write auth/okta/config \
+        base_url="okta.com" \
+        org_name="dev-8865195" \
+        api_token="00hMAcEIxf1WgTM5FVHmmp19CBk2S_2j8o3b0Izynt"
     curl -k -X POST \
         "https://localhost:8200/v1/sys/config/cors" \
         -H  "accept: */*" -H  "Content-Type: application/json" \
@@ -238,6 +242,11 @@ alias dev="cd $MONOREPO/interface/scalajs && rm -r target && vault-dev && sbt cl
 
 # IntelliJ installs faster without compression
 alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
+
+alias bazbuild="bazel build --noremote_upload_local_results --sandbox_debug '//...'"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # keep apt updated by running updates on shell init
 # update > ~/.apt.log 2>&1 &
