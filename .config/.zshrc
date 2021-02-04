@@ -245,6 +245,12 @@ alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
 
 alias bazbuild="bazel build --noremote_upload_local_results --sandbox_debug '//...'"
 
+alias gql="gql-reload && sleep 10 && gql-pls"
+
+alias gql-pls="sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep web-interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep running | grep interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad alloc status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep graphql | awk '{print \$3}' | xargs -I {} echo \"http://{}/schema\""
+
+alias gql-reload="sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep web-interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep running | grep interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad alloc restart -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token)"
+
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 

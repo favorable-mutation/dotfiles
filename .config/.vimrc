@@ -170,6 +170,11 @@ nnoremap <Leader>o :NERDTreeToggle<CR>
 " make him just a *bit* smaller
 let g:NERDTreeWinSize=20
 
+nnoremap <Leader>h ^
+nnoremap <Leader>j *
+nnoremap <Leader>k #
+nnoremap <Leader>l $
+
 " window management should be easier
 nnoremap <Leader>wh :winc h<CR>
 nnoremap <Leader>wj :winc j<CR>
