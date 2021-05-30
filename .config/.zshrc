@@ -235,6 +235,37 @@ vault-dev() {
         -d "{\"allowed_origins\":[\"*\"],\"enable\":true}"
 }
 
+RUN() {
+  cd $MONOREPO
+  sudo ./scripts/runtime_util.sh --nuke
+  sudo rm -rf /opt/radix
+  sudo apt remove radix-timberland
+  bazel build --noremote_upload_local_results //...
+  bazel query 'attr(generator_function, dockerize_scala, //...)' | egrep ".*docker\$" | xargs -n 1 -I {} bazel run --noremote_upload_local_results {} -- --norun
+  sudo apt install ./bazel-bin/timberland/jvm/timberland-deb.deb
+  timberland disable apprise
+  timberland disable elasticsearch
+  timberland disable remote_images
+  timberland disable yugabyte
+  timberland enable nginx
+  timberland enable runtime
+  timberland enable web-interface
+  timberland enable okta-auth
+  timberland enable prism
+  timberland start
+  # curl -k \
+  #   -H  "X-Vault-Token: $(cat /opt/radix/timberland/.vault-token)" \
+  #   "https://localhost:8200/v1/auth/token/lookup-self" \
+  # curl -k -X POST \
+  #   "https://localhost:8200/v1/sys/config/cors" \
+  #   -H  "accept: */*" -H  "Content-Type: application/json" \
+  #   -H  "X-Vault-Token: $(cat /opt/radix/timberland/.vault-token)" \
+  #   -d "{\"allowed_origins\":[\"https://localhost:1337\"],\"enable\":true}"
+  cd $MONOREPO/interface/typescript
+  echo "HTTPS=true\nPORT=1337\nREACT_APP_API_PORT=$(gql-pls)" > .env
+  yarn start
+}
+
 alias dev="cd $MONOREPO/interface/scalajs && rm -r target && vault-dev && sbt clean cleanFiles dev"
 
 # run apt update, upgrade
@@ -245,9 +276,9 @@ alias intj-upgrade="PKGEXT='.pkg.tar' yay -S intellij-idea-ultimate-edition"
 
 alias bazbuild="bazel build --noremote_upload_local_results --sandbox_debug '//...'"
 
-alias gql="gql-reload && sleep 10 && gql-pls"
+alias gql="bazel run --noremote_upload_local_results //utils/api/jvm:api-uservice-docker -- --norun && gql-reload && sleep 10 && gql-pls"
 
-alias gql-pls="sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep web-interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep running | grep interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad alloc status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep graphql | awk '{print \$3}' | xargs -I {} echo \"http://{}/schema\""
+alias gql-pls="sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep web-interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep running | grep interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad alloc status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep graphql | awk '{print \$3}' | sed 's/:/\n/g' | head -n 2 | tail -n 1" # | xargs -I {} echo \"{}\""
 
 alias gql-reload="sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep web-interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad job status -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token) | grep running | grep interface | awk '{print \$1}' | xargs sudo /opt/radix/timberland/nomad/nomad alloc restart -address=https://nomad.service.consul:4646 -tls-skip-verify -token=\$(sudo cat /opt/radix/timberland/.acl-token)"
 
