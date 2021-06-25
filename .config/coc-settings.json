@@ -1,30 +1,27 @@
 {
- "coc.preferences.formatOnSaveFiletypes": [
-    "scala",
+  /*"coc.preferences.formatOnSaveFiletypes": [
+    "python",
     "javascript",
-    "javascriptreact",
     "typescript",
-    "typescriptreact"
- ],
- "eslint.autoFixOnSave": true,
- "eslint.filetypes": [
-   "javascript",
-   "javascriptreact",
-   "typescript",
-   "typescriptreact"
- ],
- "prettier.disableSuccessMessage": true,
- "languageserver": {
-   "racket": {
-     "command": "racket",
-     "args": [
-       "--lib",
-       "racket-langserver"
-     ],
-     "filetypes": [
-       "scheme"
-     ]
-   }
- }
- // "metals.statusBarEnabled": true
+    "vue"
+  ],*/
+  // "diagnostic-languageserver.formatFiletypes": {
+  //   "python": ["flake8", "black", "isort"]
+  // },
+  "eslint.autoFixOnSave": true,
+  "eslint.format.enable": true,
+  "eslint.onIgnoredFiles": "warn",
+  "eslint.options": {
+    "ext": [".js", ".vue", ".spec.js"]
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.run": "onSave",
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "vetur.format.defaultFormatterOptions": {
+    "prettier-eslint": {
+      "eslintPath": "~/src/ims/ims-ui/ims-ui-lint.sh"
+    }
+  },
+  "vetur.trace.server": "verbose",
 }
